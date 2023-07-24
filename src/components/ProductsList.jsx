@@ -1,25 +1,21 @@
-import { FaFolderPlus } from 'react-icons/fa';
 import Product from './Product';
-import './productsList.css';
+import PropTypes from 'prop-types';
 const ProductsList = ({ title }) => {
     return (
-        <section className='featured-products'>
-            <div className='products-list'>
-                <h3>{title}</h3>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-            </div>
-
-            <button className='btn' style={{ margin: 'auto' }}>
-                <FaFolderPlus /> View More
-            </button>
-        </section>
+        <div className='products-list'>
+            <h3>{title}</h3>
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+        </div>
     );
 };
 
+ProductsList.propTypes = {
+    title: PropTypes.string,
+};
 ProductsList.defaultProps = {
     title: 'Products',
 };

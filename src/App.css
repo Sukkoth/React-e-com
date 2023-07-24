@@ -34,6 +34,10 @@ body {
     margin: 0;
 }
 
+.nav-list li {
+    /* padding: 0.5rem; */
+}
+
 .nav-list li a {
     text-decoration: none;
     color: white;
@@ -86,17 +90,23 @@ body {
             rgba(91, 161, 153, 1) 50%,
             rgba(187, 198, 200, 1) 100%
         );
-        margin-top: 160px;
+        margin-top: 15rem;
         padding: 0;
         text-align: center;
         display: none;
         width: 100%;
         /* border: solid; */
+        padding-bottom: 2rem;
+    }
+
+    .nav-list li {
+        margin-bottom: 0.5rem;
     }
 
     .show-nav-menu {
         animation: fade 400ms linear forwards;
         display: block;
+        /* padding-bottom: 2rem; */
     }
 
     .nav-toggle {

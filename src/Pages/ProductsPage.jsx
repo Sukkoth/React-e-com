@@ -5,9 +5,12 @@ import { useState } from 'react';
 const ProductsPage = () => {
     const [showFilters, setShowFilters] = useState(false);
     return (
-        <>
+        <div className='productsPage'>
             <div className='filters'>
-                <h3 onClick={() => setShowFilters((curr) => !curr)}>
+                <h3
+                    className={`${showFilters ? 'activate-filters' : ''}`}
+                    onClick={() => setShowFilters((curr) => !curr)}
+                >
                     FILTERS
                     <span className='toggleIcon'>
                         {!showFilters ? <FaChevronDown /> : <FaChevronUp />}
@@ -184,7 +187,7 @@ const ProductsPage = () => {
             </div>
 
             <ProductsList />
-        </>
+        </div>
     );
 };
 

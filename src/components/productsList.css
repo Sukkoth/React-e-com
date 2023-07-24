@@ -56,11 +56,13 @@
 }
 
 .filters h3 {
-    /* background-color: var(--teritiary-color); */
     text-align: center;
     padding-block: 1rem;
 }
 
+.filters .activate-filters {
+    background-color: var(--teritiary-color);
+}
 .filters h3 span {
     margin-left: 1rem;
 }
@@ -87,13 +89,22 @@
     border-radius: 1rem;
     margin-bottom: 0.7rem;
     text-align: start;
+    width: 11.5rem;
 }
 
 .filter ul {
     margin-top: 0;
     list-style: none;
-    font-weight: 300;
-    padding-inline: 1rem 1rem;
+    padding: 1.2rem 1.4rem;
+}
+
+.filter ul li {
+    margin-bottom: 0.5rem;
+}
+
+.filter label {
+    margin-left: 0.3rem;
+    font-weight: 200;
 }
 
 .filter h3 {
@@ -134,7 +145,6 @@
         align-items: center;
         height: 13rem;
         padding-inline: 0.9rem;
-        width: 45rem;
     }
 
     .product h4 {
@@ -150,28 +160,74 @@
     }
 
     .product .img {
-        min-width: 12rem;
-        max-width: 12rem;
-        min-height: 12rem;
-        max-height: 12rem;
+        min-width: 11rem;
+        max-width: 11rem;
+        min-height: 11rem;
+        max-height: 11rem;
     }
     .product .more-info {
         justify-content: space-between;
         margin-block: 2.2rem 0;
     }
+
+    .filters {
+        margin-top: 8rem;
+    }
+
+    .filter label {
+        font-weight: 300;
+    }
 }
 
 @media screen and (min-width: 800px) {
-    .product {
-        width: 43rem;
+    .productsPage {
+        display: flex;
+        margin-top: 10rem;
+        margin-inline: 1rem;
+    }
+    .products-list {
+        margin-top: 0;
+        align-items: center;
+        width: 75%;
+    }
+
+    .products-list h3 {
+        background-color: var(--teritiary-color);
+        padding: 1rem 2rem;
+        text-transform: uppercase;
+    }
+
+    .filters {
+        width: 25%;
+        margin-left: 1rem;
+        margin-top: 0;
+    }
+
+    .filters .filter {
+        min-width: 90%;
+    }
+
+    .filters ul {
+        width: 100%;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .product {
-        width: 100%;
         margin-bottom: 2rem;
     }
+
+    .product .product-body {
+        width: 100%;
+    }
+
+    .filters .filter {
+        min-width: 70%;
+    }
+
+    /* .product {
+        width: 98%;
+    } */
 }
 
 .featured-products {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import icon from '../assets/icon-2.png';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { FaCartPlus } from 'react-icons/fa';
+import { FaCartPlus, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
@@ -15,13 +15,10 @@ const Nav = () => {
                 className='nav-toggle'
                 onClick={() => setShowNavMenu((curr) => !curr)}
             >
-                <AiOutlineMenu />
+                {showNavMenu ? <FaTimes /> : <AiOutlineMenu />}
             </button>
 
-            <div
-                className={`nav-menu ${showNavMenu ? 'show-nav-menu' : ''}`}
-                // style={showNavMenu ? { display: 'block' } : {}}
-            >
+            <div className={`nav-menu ${showNavMenu ? 'show-nav-menu' : ''}`}>
                 <ul className='nav-list'>
                     <li>
                         <Link to='/'>Home</Link>
@@ -36,9 +33,9 @@ const Nav = () => {
                         <a href='/'>Contact</a>
                     </li>
                     <li>
-                        <a href='/'>
+                        <Link to='/cart'>
                             <FaCartPlus /> Cart
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
