@@ -34,7 +34,8 @@ const Nav = () => {
                     </li>
                     <li>
                         <Link to='/cart'>
-                            <FaCartPlus /> Cart
+                            <FaCartPlus /> Cart{' '}
+                            <span className='cart-counter'>1</span>
                         </Link>
                     </li>
                 </ul>

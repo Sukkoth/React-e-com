@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const ProductsList = ({ title }) => {
     return (
         <div className='products-list'>
-            <h3>{title}</h3>
+            {/* <h3>{title}</h3> */}
             <Product />
             <Product />
             <Product />

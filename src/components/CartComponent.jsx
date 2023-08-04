@@ -86,6 +86,57 @@ const CartComponent = () => {
                     </div>
                 </div>
             </div>
+
+            <div className='cart-total'>
+                <div className='total-item'>
+                    <h3>Sub Total</h3>
+                    <p>$100</p>
+                </div>
+                <div className='total-item'>
+                    <label htmlFor='shippingCountry'>Region</label>
+                    <select name='' id='shippingCountry'>
+                        <option value='Oromia'>Oromia</option>
+                        <option value='Amhara'>Amhara</option>
+                        <option value='Gambella'>Gambella</option>
+                        <option value='Somali'>Somali</option>
+                        <option value='south'>South Region</option>
+                        <option value='Sidama'>Sidama</option>
+                        <option value='Tigrai'>Tigrai</option>
+                    </select>
+                </div>
+                <div className='total-item'>
+                    <label htmlFor='city'>City</label>
+                    <select name='' id='city'>
+                        <option value='Oromia'>Oromia</option>
+                        <option value='Amhara'>Amhara</option>
+                        <option value='Gambella'>Gambella</option>
+                        <option value='Somali'>Somali</option>
+                        <option value='south'>South Region</option>
+                        <option value='Sidama'>Sidama</option>
+                        <option value='Tigrai'>Tigrai</option>
+                    </select>
+                </div>
+                <div className='total-item'>
+                    <label htmlFor='phone'>Phone </label>
+                    <input type='text' id='phone' />
+                </div>
+                <div className='total-item'>
+                    <p>Shipment</p>
+                    <p>$12</p>
+                </div>
+
+                <div className='total-item'>
+                    <button className='btn'>Estimate Shipping</button>
+                </div>
+                <div className='total-item'>
+                    <p>Grand Total</p>
+                    <p>$120</p>
+                </div>
+
+                <div className='total-item'>
+                    <button className='btn'>Checkout</button>
+                </div>
+            </div>
         </>
     );
 };

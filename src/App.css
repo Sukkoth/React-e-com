@@ -38,6 +38,10 @@ body {
     /* padding: 0.5rem; */
 }
 
+.nav-list .cart-counter {
+    color: #469597;
+}
+
 .nav-list li a {
     text-decoration: none;
     color: white;
