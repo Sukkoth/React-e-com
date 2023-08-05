@@ -18,12 +18,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 1rem;
     margin-bottom: 2rem;
     border-block: solid 1px var(--primary-color);
-    padding: 1.5rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
 }
 
+.cart-item .price,
+.total {
+    font-weight: 500;
+}
+
+.cart-button {
+    background-color: #5ba199;
+    border: none;
+    padding-inline: 1.3rem;
+    padding-block: 0.5rem;
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.cart-button:hover {
+    background-color: #8bc5be;
+}
+
+/* headers */
 .cart-item:first-child {
     border: none;
     padding: 0;
@@ -32,11 +55,9 @@
 }
 
 .cart-item .img {
-    max-width: 6rem;
-    min-width: 6rem;
-    min-height: 6rem;
-    max-height: 6rem;
     object-fit: cover;
+    width: 4rem;
+    height: 4rem;
 }
 
 .cart-item .buttons {
@@ -54,13 +75,16 @@
 .btn-qty {
     border-radius: 0;
     border-inline: solid 1px;
+    cursor: pointer;
 }
 
 .btn-add {
     border-radius: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
 }
 .btn-sub {
     border-radius: 0.5rem 0 0 0.5rem;
+    cursor: pointer;
 }
 
 .cart-total {
@@ -86,21 +110,23 @@
 
 .total-item select {
     background-color: none;
-    border: solid 1px;
+    border: solid 1px var(--primary-color);
     padding: 0.1rem 4rem;
-    border-radius: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: large;
     outline: none;
+    color: var(--primary-color);
 }
 
 .total-item input {
-    border: solid 1px;
-    border-radius: 1rem;
+    border: solid 1px var(--primary-color);
+    color: var(--primary-color);
     outline: none;
     width: 14rem;
     padding: 0.3rem 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: large;
+    text-align: center;
 }
 
 .total-item button {
@@ -108,8 +134,37 @@
     margin-block: 2rem 1rem;
 }
 
+@media screen and (max-width: 600px) {
+    .cart-button {
+        padding-block: 0.3rem;
+    }
+    .btn-qty {
+        padding-inline: 0.7rem;
+    }
+
+    .total-item select {
+        padding-inline: 0.2rem;
+    }
+    .total-item input {
+        padding-inline: 0.2rem;
+        width: 7.9rem;
+    }
+}
+
 @media screen and (min-width: 600px) {
     .cart-page {
         margin-top: 8rem;
+    }
+    .cart-item .img {
+        width: 7.5rem;
+        height: 7.5rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .total-item {
+        width: 40%;
+        padding-right: 2rem;
+        margin-left: 58%;
     }
 }

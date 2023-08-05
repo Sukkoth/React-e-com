@@ -184,6 +184,8 @@
 @media screen and (min-width: 800px) {
     .productsPage {
         display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
         margin-top: 10rem;
         margin-inline: 1rem;
     }

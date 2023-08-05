@@ -19,9 +19,9 @@ const CartComponent = () => {
                     <div className='price'>$67.00</div>
                     <div className='quantity'>
                         <div className='buttons'>
-                            <button className='btn btn-sub'>-</button>
-                            <button className='btn btn-qty'>12</button>
-                            <button className='btn btn-add'>+</button>
+                            <button className='cart-button btn-sub'>-</button>
+                            <button className='cart-button btn-qty'>12</button>
+                            <button className='cart-button btn-add'>+</button>
                         </div>
                     </div>
                     <div className='total'>
@@ -37,45 +37,9 @@ const CartComponent = () => {
                     <div className='price'>$67.00</div>
                     <div className='quantity'>
                         <div className='buttons'>
-                            <button className='btn btn-sub'>-</button>
-                            <button className='btn btn-qty'>12</button>
-                            <button className='btn btn-add'>+</button>
-                        </div>
-                    </div>
-                    <div className='total'>
-                        120.00$
-                        <span>
-                            <FaTimes />
-                        </span>
-                    </div>
-                </div>
-                <div className='cart-item'>
-                    <img className='img' src={phone1} alt='product_img' />
-
-                    <div className='price'>$67.00</div>
-                    <div className='quantity'>
-                        <div className='buttons'>
-                            <button className='btn btn-sub'>-</button>
-                            <button className='btn btn-qty'>12</button>
-                            <button className='btn btn-add'>+</button>
-                        </div>
-                    </div>
-                    <div className='total'>
-                        120.00$
-                        <span>
-                            <FaTimes />
-                        </span>
-                    </div>
-                </div>
-                <div className='cart-item'>
-                    <img className='img' src={phone1} alt='product_img' />
-
-                    <div className='price'>$67.00</div>
-                    <div className='quantity'>
-                        <div className='buttons'>
-                            <button className='btn btn-sub'>-</button>
-                            <button className='btn btn-qty'>12</button>
-                            <button className='btn btn-add'>+</button>
+                            <button className='cart-button btn-sub'>-</button>
+                            <button className='cart-button btn-qty'>12</button>
+                            <button className='cart-button btn-add'>+</button>
                         </div>
                     </div>
                     <div className='total'>

@@ -1,5 +1,6 @@
 import Product from './Product';
 import PropTypes from 'prop-types';
+import Pagination from './Pagination/Pagination';
 const ProductsList = ({ title }) => {
     return (
         <div className='products-list'>
@@ -12,6 +13,7 @@ const ProductsList = ({ title }) => {
             <Product />
             <Product />
             <Product />
+            <Pagination />
         </div>
     );
 };
