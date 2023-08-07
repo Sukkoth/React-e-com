@@ -1,5 +1,4 @@
-import ProductsList from '../components/ProductsList';
-import Pagination from '../components/Pagination/Pagination';
+import ProductsList from '../components/Product/ProductsList';
 import Filters from '../components/Filters/Filters';
 
 const ProductsPage = () => {

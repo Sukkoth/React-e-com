@@ -1,5 +1,5 @@
 import './cartComponent.css';
-import phone1 from '../assets/products/tv-1.jpg';
+import phone1 from '../../assets/products/tv-1.jpg';
 import { FaTimes } from 'react-icons/fa';
 const CartComponent = () => {
     return (

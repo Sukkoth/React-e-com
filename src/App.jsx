@@ -1,7 +1,7 @@
 import Nav from './components/Nav';
 import './App.css';
 import Home from './Pages/Home';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import { Routes, Route } from 'react-router-dom';
 import ProductsPage from './Pages/ProductsPage';
 import CartPage from './Pages/CartPage';

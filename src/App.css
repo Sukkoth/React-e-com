@@ -45,6 +45,7 @@ body {
 .nav-list li a {
     text-decoration: none;
     color: white;
+    text-transform: uppercase;
 }
 
 .nav .logo-container {

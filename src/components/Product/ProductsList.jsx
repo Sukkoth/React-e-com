@@ -1,7 +1,10 @@
 import Product from './Product';
 import PropTypes from 'prop-types';
-import Pagination from './Pagination/Pagination';
+import Pagination from '../Pagination/Pagination';
+import { useLocation } from 'react-router-dom';
 const ProductsList = ({ title }) => {
+    const { pathname } = useLocation();
+    console.log(pathname);
     return (
         <div className='products-list'>
             <h3>{title}</h3>
@@ -13,7 +16,7 @@ const ProductsList = ({ title }) => {
             <Product />
             <Product />
             <Product />
-            <Pagination />
+            {pathname === '/products' && <Pagination />}
         </div>
     );
 };

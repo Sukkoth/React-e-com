@@ -1,5 +1,5 @@
-import Carousel from '../components/Carousel';
-import FeaturedProducts from '../components/FeaturedProducts';
+import Carousel from '../components/Carousel/Carousel';
+import FeaturedProducts from '../components/Product/FeaturedProducts';
 const Home = () => {
     return (
         <>

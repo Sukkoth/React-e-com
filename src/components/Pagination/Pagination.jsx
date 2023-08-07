@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import './pagination.css';
 const Pagination = ({
-    page = 2,
+    page = 6,
     totalResults = 100,
     pageSize = 10,
     handlePageChange,
