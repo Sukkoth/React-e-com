@@ -1,5 +1,5 @@
 import { FaCartPlus, FaSearch, FaHeart } from 'react-icons/fa';
-import phone1 from '../../assets/products/tv-1.jpg';
+import phone1 from '../../assets/products/headphone-1.jpg';
 
 const Product = () => {
     return (
