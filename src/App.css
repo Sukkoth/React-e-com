@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500;600;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/futura-pt');
 :root {
     --primary-color: #469597;
     --secondary-color: #5ba199;
@@ -9,7 +10,13 @@
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Futura PT', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Bitter', serif; */
+}
+
+button {
+    font-family: 'Futura PT', sans-serif;
 }
 
 .nav {
@@ -41,7 +48,9 @@ body {
 .nav-list li a {
     text-decoration: none;
     color: white;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: large;
 }
 
 .nav .logo-container {

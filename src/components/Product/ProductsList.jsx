@@ -4,7 +4,6 @@ import Pagination from '../Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
 const ProductsList = ({ title, products }) => {
     const { pathname } = useLocation();
-    console.log(pathname);
     return (
         <div className='products-list'>
             <h3>{title}</h3>

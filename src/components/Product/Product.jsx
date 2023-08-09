@@ -1,4 +1,5 @@
 import { FaCartPlus, FaSearch, FaHeart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import phone1 from '../../assets/products/headphone-1.jpg';
 const staticImageUrl = 'http://localhost:8000/images/products';
 const Product = ({ product }) => {
@@ -13,7 +14,9 @@ const Product = ({ product }) => {
                 className='img'
             />
             <div className='product-menu'>
-                <FaSearch className='icons' />
+                <Link to={`/products/${product?._id}`}>
+                    <FaSearch className='icons' />
+                </Link>
                 <FaCartPlus className='icons' />
                 <FaHeart className='icons' />
             </div>
