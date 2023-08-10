@@ -79,6 +79,14 @@ button {
     box-shadow: 0 0 20px 1px #469597;
 }
 
+.error-message {
+    color: red;
+    text-align: center;
+    margin: auto;
+    background-color: var(--light-color);
+    padding: 1.5rem 4rem;
+}
+
 @media screen and (max-width: 600px) {
     .main {
         width: 100%;

@@ -18,7 +18,7 @@ const ProductsPage = () => {
                     <h3 style={{ minHeight: '90vh' }}>Loading . . . </h3>
                 )}
 
-                {!products.isLoading && products.data && (
+                {!products.isLoading && !products.error && products.data && (
                     <>
                         <Filters />
                         <ProductsList products={products} />
