@@ -105,7 +105,8 @@ p {
     padding: 0.6rem 0.5rem;
 }
 
-.details .variants h3 {
+.details .variants h3,
+.details .other-details h3 {
     margin-block: 2px;
     font-weight: 400;
     font-size: x-large;
@@ -131,13 +132,15 @@ p {
     transition: background-color 300ms;
 }
 
-.variants .attributes p {
+.variants .attributes p,
+.other-details .attributes p {
     padding: 5px;
     padding-left: 0;
     color: rgb(122, 113, 113);
 }
 
-.variants .attributes p span {
+.variants .attributes p span,
+.other-details .attributes p span {
     font-weight: 500;
     color: rgb(87, 86, 86);
 }
@@ -171,6 +174,11 @@ p {
 .variants .add-wish:hover {
     background-color: var(--teritiary-color);
     transition: background-color 300ms;
+}
+
+.details .other-details {
+    margin-top: 2rem;
+    padding: 0.6rem 0.5rem;
 }
 
 @media screen and (min-width: 800px) {

@@ -1,10 +1,10 @@
 import Carousel from '../components/Carousel/Carousel';
-import FeaturedProducts from '../components/Product/FeaturedProducts';
+import HomeComponent from '../components/Home/HomeComponent';
 const Home = () => {
     return (
         <>
             <Carousel />
-            <FeaturedProducts />
+            <HomeComponent />
         </>
     );
 };

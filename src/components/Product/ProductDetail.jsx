@@ -131,7 +131,15 @@ const ProductDetail = () => {
 
                             <div className='product-details'></div>
                         </div>
-                        <div></div>
+                        <div className='other-details'>
+                            <h3>Product Info</h3>
+                            <div className='attributes'>
+                                <p>
+                                    <span>Description: </span>
+                                    {product?.description}
+                                </p>
+                            </div>
+                        </div>
                     </section>
                 </>
             )}
