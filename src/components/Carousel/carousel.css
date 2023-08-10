@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.text {
+.carousel-text {
     position: absolute;
     color: black;
     padding-inline: 0.7rem;
@@ -40,7 +40,7 @@
     height: 18rem;
     object-fit: cover;
     opacity: 0.8;
-    transition: fade 400ms fade;
+    transition: fade 400ms ease-in;
 }
 
 .carousel button {
@@ -54,7 +54,7 @@
     .carousel {
         margin-top: 6rem;
     }
-    .text {
+    .carousel-text {
         padding-inline: 0.7rem;
     }
 
@@ -75,7 +75,7 @@
         height: 30rem;
     }
 
-    .text {
+    .carousel-text {
         /* background-color: var(--teritiary-color); */
         box-shadow: 0 0 40px 20px var(--primary-color);
     }

@@ -1,0 +1,39 @@
+.featured {
+    margin: 1rem;
+    padding: 0.5rem;
+    margin-top: 5rem;
+}
+
+.featured h4 {
+    font-size: 2.3rem;
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 1.3rem;
+}
+
+.featured .products {
+    display: flex;
+    gap: 1rem;
+}
+
+.featured .products .product {
+    background-color: var(--light-color);
+    width: 48%;
+}
+
+.featured .products .product .image-container {
+    width: 100%;
+    /* height: rem; */
+    position: relative;
+}
+.featured .products .product .image-container img {
+    width: 100%;
+}
+
+.featured .products .product .image-container .icon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-size: x-large;
+    color: var(--secondary-color);
+}
