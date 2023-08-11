@@ -39,7 +39,7 @@ const Carousel = () => {
                     : null
             }
         >
-            <div className='text'>
+            <div className='carousel-text'>
                 <h1>Welcome to E-shop</h1>
             </div>
             <button

@@ -2,20 +2,16 @@ import Product from './Product';
 import PropTypes from 'prop-types';
 import Pagination from '../Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
-const ProductsList = ({ title }) => {
+import './productsList.css';
+
+const ProductsList = ({ title, products }) => {
     const { pathname } = useLocation();
-    console.log(pathname);
     return (
         <div className='products-list'>
             <h3>{title}</h3>
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+            {products.data?.products?.map((product) => (
+                <Product product={product} key={product._id} />
+            ))}
             {pathname === '/products' && <Pagination />}
         </div>
     );

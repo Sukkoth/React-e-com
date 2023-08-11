@@ -1,0 +1,81 @@
+.home-banner {
+    width: 80%;
+    height: 15rem;
+    margin: auto;
+    display: flex;
+    margin-top: 5rem;
+}
+
+.home-banner img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.home-banner .content {
+    padding-inline: 1rem;
+    padding-top: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 0 1rem 1rem 0;
+    width: 50%;
+}
+
+.home-banner .content p {
+    font-size: large;
+    margin-top: 1.2rem;
+}
+
+.home-banner .content h3 {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-block: 0.5rem;
+}
+
+.home-banner .content button {
+    background-color: white;
+    color: rgb(124, 122, 122);
+    margin-top: 2rem;
+    font-size: smaller;
+    padding-block: 0.8rem;
+    cursor: pointer;
+}
+
+.home-banner .content .btn .icon {
+    font-size: 0.6rem;
+}
+
+@media screen and (max-width: 600px) {
+    .home-banner .content h3 {
+        font-size: 1.2rem;
+    }
+    .home-banner .content button {
+        padding: 0.5rem 0.8rem;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .home-banner .content h3 {
+        font-size: 1.5rem;
+    }
+    .home-banner .content button {
+        margin-top: 1.8rem;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .home-banner {
+        height: 20rem;
+    }
+    .home-banner .content {
+        padding-left: 2rem;
+    }
+
+    .home-banner .content h3 {
+        font-size: 2rem;
+        font-weight: 500;
+        width: 80%;
+        font-size: 2.5rem;
+    }
+}

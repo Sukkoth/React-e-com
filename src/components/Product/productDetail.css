@@ -1,0 +1,185 @@
+.details-main {
+    min-height: 92.5vh;
+    width: 90%;
+    display: flex;
+    margin: auto;
+    gap: 2rem;
+    margin: auto;
+    margin-block: 10rem 2rem;
+}
+
+.showcase {
+    width: 60%;
+    min-height: 100%;
+    display: flex;
+}
+
+.showcase .navigator {
+    width: 15%;
+    height: 60%;
+    margin-inline: auto;
+    overflow-y: auto;
+}
+
+.showcase .navigator::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+.showcase .navigator::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px var(--light-color);
+}
+
+.showcase .navigator::-webkit-scrollbar-thumb {
+    background-color: var(--teritiary-color);
+}
+
+.showcase .navigator .container {
+    padding: 1rem;
+}
+
+.showcase .navigator .container img {
+    width: 100%;
+    margin: auto;
+    object-fit: cover;
+    cursor: pointer;
+    padding: 0.4rem;
+}
+
+.showcase .navigator .container img:hover {
+    border: solid 1px var(--teritiary-color);
+}
+
+.showcase .navigator .container .active-nav-image {
+    border: solid 1px var(--teritiary-color);
+}
+
+.showcase .preview {
+    width: 85%;
+    height: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showcase .preview img {
+    width: 80%;
+}
+
+.details {
+    width: 40%;
+}
+
+.details .header {
+    padding: 0.6rem 0.5rem;
+    min-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.details .header h3,
+h4,
+p {
+    margin: 0;
+}
+
+.details .header h3 {
+    font-weight: 400;
+    font-size: x-large;
+    color: var(--secondary-color);
+}
+
+.details .header h4 {
+    font-weight: 400;
+    font-size: large;
+    color: var(--teritiary-color);
+}
+
+.details .header p {
+    font-size: small;
+    font-weight: 400;
+    color: var(--primary-color);
+}
+
+.details .variants {
+    padding: 0.6rem 0.5rem;
+}
+
+.details .variants h3,
+.details .other-details h3 {
+    margin-block: 2px;
+    font-weight: 400;
+    font-size: x-large;
+    color: var(--secondary-color);
+}
+
+.variants .variant-nav {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem 2rem 2rem 0;
+}
+.variants .variant-nav p {
+    margin: 0;
+    color: var(--light-color);
+    padding: 0.7rem 1rem;
+    background-color: var(--teritiary-color);
+    cursor: pointer;
+}
+
+.variants .variant-nav p:hover,
+.variants .variant-nav .active {
+    background-color: var(--secondary-color);
+    transition: background-color 300ms;
+}
+
+.variants .attributes p,
+.other-details .attributes p {
+    padding: 5px;
+    padding-left: 0;
+    color: rgb(122, 113, 113);
+}
+
+.variants .attributes p span,
+.other-details .attributes p span {
+    font-weight: 500;
+    color: rgb(87, 86, 86);
+}
+
+.variants button {
+    margin-top: 2rem;
+    width: 20rem;
+    padding-block: 0.8rem;
+    font-size: 1.1rem;
+    border: none;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    color: white;
+}
+.variants .add-cart {
+    background: var(--primary-color);
+}
+
+.variants .add-cart:hover {
+    background-color: var(--teritiary-color);
+    transition: background-color 300ms;
+}
+
+.variants .add-wish {
+    color: grey;
+}
+.variants .add-wish:hover {
+    background-color: var(--teritiary-color);
+    transition: background-color 300ms;
+}
+
+.details .other-details {
+    margin-top: 2rem;
+    padding: 0.6rem 0.5rem;
+}
+
+@media screen and (min-width: 800px) {
+}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500;600;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/futura-pt');
 :root {
     --primary-color: #469597;
     --secondary-color: #5ba199;
@@ -9,7 +10,13 @@
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Futura PT', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Bitter', serif; */
+}
+
+button {
+    font-family: 'Futura PT', sans-serif;
 }
 
 .nav {
@@ -34,10 +41,6 @@ body {
     margin: 0;
 }
 
-.nav-list li {
-    /* padding: 0.5rem; */
-}
-
 .nav-list .cart-counter {
     color: #469597;
 }
@@ -45,11 +48,13 @@ body {
 .nav-list li a {
     text-decoration: none;
     color: white;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: large;
 }
 
 .nav .logo-container {
-    padding-block: 10px;
+    padding-block: 5px;
     margin-left: 1rem;
 }
 
@@ -74,6 +79,14 @@ body {
     box-shadow: 0 0 20px 1px #469597;
 }
 
+.error-message {
+    color: red;
+    text-align: center;
+    margin: auto;
+    background-color: var(--light-color);
+    padding: 1.5rem 4rem;
+}
+
 @media screen and (max-width: 600px) {
     .main {
         width: 100%;
@@ -82,12 +95,10 @@ body {
     .nav {
         width: 100%;
         justify-content: space-between;
-        /* background-color: var(--primary-color); */
     }
 
     .nav-menu {
         position: absolute;
-        /* background-color: var(--primary-color); */
         background: rgb(70, 149, 151);
         background: linear-gradient(
             90deg,
@@ -95,12 +106,11 @@ body {
             rgba(91, 161, 153, 1) 50%,
             rgba(187, 198, 200, 1) 100%
         );
-        margin-top: 15rem;
+        margin-top: 14rem;
         padding: 0;
         text-align: center;
         display: none;
         width: 100%;
-        /* border: solid; */
         padding-bottom: 2rem;
     }
 
@@ -111,7 +121,6 @@ body {
     .show-nav-menu {
         animation: fade 400ms linear forwards;
         display: block;
-        /* padding-bottom: 2rem; */
     }
 
     .nav-toggle {
@@ -150,7 +159,7 @@ body {
     }
 
     .nav-menu {
-        padding: 2rem;
+        padding: 1.5rem;
         margin-right: 3rem;
     }
 
