@@ -66,10 +66,13 @@
 }
 
 .product-menu .icons {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
 }
-
+.product-menu .icons {
+    transform: scale(1.3);
+    transition: transform 500ms;
+}
 .filters {
     margin-top: 5rem;
 }

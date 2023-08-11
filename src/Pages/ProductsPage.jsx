@@ -24,7 +24,7 @@ const ProductsPage = () => {
                         <ProductsList products={products} />
                     </>
                 )}
-                {products.error && (
+                {!products.isLoading && products.error && (
                     <h3 style={{ minHeight: '90vh' }}>
                         ERROR! {products.error?.message}
                     </h3>

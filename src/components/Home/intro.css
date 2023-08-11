@@ -65,7 +65,7 @@
     flex: 0 0 100%;
     text-align: center;
     font-size: 3rem;
-    margin-block: 2rem;
+    margin-block: 2rem 2.5rem;
     color: var(--secondary-color);
 }
 
@@ -181,6 +181,11 @@
         text-align: center;
         margin-inline: auto;
     }
+
+    .home-intro .features {
+        margin-top: 12rem;
+    }
+
     .home-intro .features .feature {
         width: 20%;
     }
@@ -188,7 +193,7 @@
     .popular-categories {
         width: 90%;
         margin-inline: auto;
-        margin-top: 5rem;
+        margin-top: 10rem;
     }
 
     .popular-categories .category .details h3 {

@@ -59,7 +59,7 @@ button {
 }
 
 .nav .logo-container img {
-    width: 80%;
+    width: 100%;
 }
 
 .btn {
@@ -106,7 +106,7 @@ button {
             rgba(91, 161, 153, 1) 50%,
             rgba(187, 198, 200, 1) 100%
         );
-        margin-top: 15rem;
+        margin-top: 14rem;
         padding: 0;
         text-align: center;
         display: none;
