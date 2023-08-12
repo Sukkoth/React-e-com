@@ -1,13 +1,13 @@
 import { FaCartPlus, FaSearch, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import phone1 from '../../assets/products/headphone-1.jpg';
-const staticImageUrl = 'http://localhost:8000/images/products';
+import { PRODCTS_IMAGE_URL } from '../../config/env';
 const Product = ({ product }) => {
     return (
         <div className='product'>
             <img
                 src={
-                    `${staticImageUrl}/${product?.variations[0]?.images[0]}` ||
+                    `${PRODCTS_IMAGE_URL}/${product?.variations[0]?.images[0]}` ||
                     phone1
                 }
                 alt='product image'

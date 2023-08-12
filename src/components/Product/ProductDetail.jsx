@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaCartPlus, FaHeart } from 'react-icons/fa';
 import { fetchproductById } from '../../features/Products/productSlice';
-const staticImageUrl = 'http://localhost:8000/images/products';
+import { PRODCTS_IMAGE_URL } from '../../config/env';
 
 const ProductDetail = () => {
     //* //////////////////DISPATCH, SELECTOR, PARAMS////////////////////////
@@ -28,7 +28,7 @@ const ProductDetail = () => {
     };
     ////////////////////Drived states////////////////////////
 
-    const imageToBePreviewed = `${staticImageUrl}/${product?.variations[activeVariant]?.images[activeImage]}`;
+    const imageToBePreviewed = `${PRODCTS_IMAGE_URL}/${product?.variations[activeVariant]?.images[activeImage]}`;
 
     //* ///////////////////// EFFECTS   ///////////////////////
 
@@ -59,7 +59,7 @@ const ProductDetail = () => {
                                                 ? 'active-nav-image'
                                                 : ''
                                         }
-                                        src={`${staticImageUrl}/${image}`}
+                                        src={`${PRODCTS_IMAGE_URL}/${image}`}
                                         alt='product_img'
                                         key={index}
                                         onClick={() => setActiveImage(index)}
