@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import './filters.css';
 
 const Filters = () => {
     const [showFilters, setShowFilters] = useState(true);
@@ -25,6 +26,7 @@ const Filters = () => {
                                     type='checkbox'
                                     name='household'
                                     id='household'
+                                    className='filter-checkbox'
                                 />
                                 <label htmlFor='household'>HouseHold</label>
                             </li>

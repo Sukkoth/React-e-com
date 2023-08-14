@@ -2,6 +2,7 @@ import { FaCartPlus, FaSearch, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import phone1 from '../../assets/products/headphone-1.jpg';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
+import './product.css';
 const Product = ({ product }) => {
     return (
         <div className='product'>

@@ -2,7 +2,7 @@ import Product from './Product';
 import PropTypes from 'prop-types';
 import Pagination from '../Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
-import './productsList.css';
+import './productList.css';
 
 const ProductsList = ({ title, products }) => {
     const { pathname } = useLocation();
