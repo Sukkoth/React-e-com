@@ -1,6 +1,10 @@
-import './carousel.css';
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import './swiper.css'; //custom
 const Carousel = () => {
     const [images, setImages] = useState([
         'tv-1.jpg',
@@ -10,57 +14,24 @@ const Carousel = () => {
         'tablet-1.jpg',
         'tablet-2.jpg',
     ]);
-    const [activeImage, setActiveImage] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveImage((curr) =>
-                curr === images.length - 1 ? 0 : curr + 1
-            );
-        }, 15000);
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
-
-    function handleClick(number) {
-        if (number === images.length) return setActiveImage(0);
-        if (number < 0) return setActiveImage(images.length - 1);
-        return setActiveImage(number);
-    }
     return (
-        <section
-            className='carousel'
-            onKeyDown={(e) =>
-                e.key === 'ArrowRight'
-                    ? handleClick(activeImage + 1)
-                    : e.key === 'ArrowLeft'
-                    ? handleClick(activeImage - 1)
-                    : null
-            }
+        <Swiper
+            navigation={true}
+            pagination={{ clickable: true }}
+            modules={[Pagination, Navigation, Autoplay]}
+            className='mySwiper'
+            autoplay={true}
+            data-swiper-autoplay='2000'
         >
-            <div className='carousel-text'>
-                <h1>Welcome to E-shop</h1>
-            </div>
-            <button
-                className='carousel-button'
-                onClick={() => handleClick(activeImage - 1)}
-            >
-                <BsChevronCompactLeft />
-            </button>
-            <div className='featured-image-container '>
-                <img
-                    src={`src/assets/products/${images[activeImage]}`}
-                    alt='featured product'
-                />
-            </div>
-            <button
-                className='carousel-button'
-                onClick={() => handleClick(activeImage + 1)}
-            >
-                <BsChevronCompactRight />
-            </button>
-        </section>
+            {images.map((image, index) => (
+                <SwiperSlide key={index}>
+                    <img
+                        src={`src/assets/products/${image}`}
+                        alt='featured product'
+                    />
+                </SwiperSlide>
+            ))}
+        </Swiper>
     );
 };
 

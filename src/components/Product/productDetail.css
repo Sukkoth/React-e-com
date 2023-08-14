@@ -22,11 +22,11 @@
 }
 
 .showcase .navigator::-webkit-scrollbar {
-    width: 0.3rem;
+    width: 2rem;
 }
 
 .showcase .navigator::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px var(--light-color);
+    box-shadow: inset 0 0 1px var(--light-color);
 }
 
 .showcase .navigator::-webkit-scrollbar-thumb {
@@ -51,11 +51,12 @@
 
 .showcase .navigator .container .active-nav-image {
     border: solid 1px var(--teritiary-color);
+    max-width: 15rem;
 }
 
 .showcase .preview {
     width: 85%;
-    height: 40rem;
+    height: 30rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,5 +182,77 @@ p {
     padding: 0.6rem 0.5rem;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (max-width: 600px) {
+    .variants .add-cart,
+    .variants .add-wish {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .variants .add-cart,
+    .variants .add-wish {
+        width: 70%;
+        margin-inline: auto;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .details-main {
+        width: 100%;
+        border-color: red;
+        gap: 0;
+        flex-direction: column;
+    }
+    .details-main .showcase {
+        width: 100%;
+        border: none;
+        flex-direction: column-reverse;
+    }
+
+    .showcase .preview {
+        height: 25rem;
+        width: 100%;
+    }
+
+    .showcase .preview img {
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .showcase .navigator {
+        width: 90%;
+        height: 7rem;
+    }
+
+    .showcase .navigator .container {
+        display: flex;
+        width: 100%;
+        height: 70%;
+        padding-block: 0.4rem;
+    }
+    .showcase .navigator .container img {
+        height: 100%;
+        object-fit: contain;
+        padding: 0;
+    }
+
+    .details-main .details {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .details-main .details .header,
+    .details-main .details .variants,
+    .details-main .details .other-details {
+        margin-inline: 2rem;
+    }
+
+    .details-main .details .other-details {
+        text-align: justify;
+    }
+
+    .showcase .navigator::-webkit-scrollbar {
+        height: 0.07rem;
+    }
 }
