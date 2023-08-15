@@ -56,7 +56,7 @@
 
 .showcase .preview {
     width: 85%;
-    height: 30rem;
+    height: 35rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,6 +64,8 @@
 
 .showcase .preview img {
     width: 80%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .details {
@@ -217,7 +219,7 @@ p {
 
     .showcase .preview img {
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
 
     .showcase .navigator {

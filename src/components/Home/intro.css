@@ -37,6 +37,7 @@
     background-color: rgb(248, 245, 245);
     padding: 1rem;
     border-radius: 0.4rem;
+    font-size: xx-large;
 }
 
 .home-intro .features .feature h4 {
@@ -57,8 +58,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.2rem;
-    margin-top: 5rem;
+    gap: 1rem;
 }
 
 .popular-categories .title {
@@ -74,8 +74,9 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0.2rem;
-    background-color: rgb(248, 245, 245);
+    padding: 0.6rem;
+    border: solid 1px var(--primary-color);
+    border-radius: 1rem;
 }
 
 .popular-categories .category .img-container {
@@ -193,7 +194,7 @@
     .popular-categories {
         width: 90%;
         margin-inline: auto;
-        margin-top: 10rem;
+        margin-top: 5rem;
     }
 
     .popular-categories .category .details h3 {

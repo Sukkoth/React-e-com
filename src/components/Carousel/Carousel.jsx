@@ -22,6 +22,7 @@ const Carousel = () => {
             className='mySwiper'
             autoplay={true}
             data-swiper-autoplay='2000'
+            loop={true}
         >
             {images.map((image, index) => (
                 <SwiperSlide key={index}>
