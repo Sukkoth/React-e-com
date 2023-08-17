@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaCartPlus, FaHeart } from 'react-icons/fa';
 import { fetchproductById } from '../../features/Products/productSlice';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
+import FullLoader from '../Loaders/FullLoader';
 
 const ProductDetail = () => {
     //* //////////////////DISPATCH, SELECTOR, PARAMS////////////////////////
@@ -41,7 +42,8 @@ const ProductDetail = () => {
 
     return (
         <div className='details-main'>
-            {isLoading && <h3>Loading . . .</h3>}
+            <FullLoader isLoading={isLoading} />
+
             {!isLoading && error && (
                 <h3 className='error-message'>ERROR! {error?.message}</h3>
             )}

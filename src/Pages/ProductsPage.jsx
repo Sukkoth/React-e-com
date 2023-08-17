@@ -3,6 +3,7 @@ import Filters from '../components/Filters/Filters';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../features/Products/productSlice';
 import { useEffect } from 'react';
+import FullLoader from '../components/Loaders/FullLoader';
 const ProductsPage = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
@@ -14,9 +15,7 @@ const ProductsPage = () => {
     return (
         <>
             <div className='productsPage'>
-                {products.isLoading && (
-                    <h3 style={{ minHeight: '90vh' }}>Loading . . . </h3>
-                )}
+                <FullLoader isLoading={products.isLoading} />
 
                 {!products.isLoading && !products.error && products.data && (
                     <>
