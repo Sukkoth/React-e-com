@@ -1,7 +1,19 @@
 import './cartComponent.css';
+import { useEffect } from 'react';
 import phone1 from '../../assets/products/tv-1.jpg';
 import { FaTimes } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCartData, cartSelector } from '../../features/Cart/cartSlice';
+
 const CartComponent = () => {
+    const dispatch = useDispatch();
+    const cart = useSelector(cartSelector);
+
+    console.log(cart.data);
+
+    useEffect(() => {
+        dispatch(fetchCartData());
+    }, [dispatch]);
     return (
         <>
             <h3>Your Cart</h3>
@@ -13,42 +25,32 @@ const CartComponent = () => {
                     <p>Total Price</p>
                 </div>
 
-                <div className='cart-item'>
-                    <img className='img' src={phone1} alt='product_img' />
+                {cart?.data?.map((cartItem) => (
+                    <div className='cart-item' key={cartItem._id}>
+                        <img className='img' src={phone1} alt='product_img' />
 
-                    <div className='price'>$67.00</div>
-                    <div className='quantity'>
-                        <div className='buttons'>
-                            <button className='cart-button btn-sub'>-</button>
-                            <button className='cart-button btn-qty'>12</button>
-                            <button className='cart-button btn-add'>+</button>
+                        <div className='price'>$67.00</div>
+                        <div className='quantity'>
+                            <div className='buttons'>
+                                <button className='cart-button btn-sub'>
+                                    -
+                                </button>
+                                <button className='cart-button btn-qty'>
+                                    12
+                                </button>
+                                <button className='cart-button btn-add'>
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                        <div className='total'>
+                            120.00$
+                            <span>
+                                <FaTimes />
+                            </span>
                         </div>
                     </div>
-                    <div className='total'>
-                        120.00$
-                        <span>
-                            <FaTimes />
-                        </span>
-                    </div>
-                </div>
-                <div className='cart-item'>
-                    <img className='img' src={phone1} alt='product_img' />
-
-                    <div className='price'>$67.00</div>
-                    <div className='quantity'>
-                        <div className='buttons'>
-                            <button className='cart-button btn-sub'>-</button>
-                            <button className='cart-button btn-qty'>12</button>
-                            <button className='cart-button btn-add'>+</button>
-                        </div>
-                    </div>
-                    <div className='total'>
-                        120.00$
-                        <span>
-                            <FaTimes />
-                        </span>
-                    </div>
-                </div>
+                ))}
             </div>
 
             <div className='cart-total'>

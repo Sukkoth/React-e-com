@@ -6,10 +6,10 @@ import { FaCartPlus, FaHeart } from 'react-icons/fa';
 import { fetchproductById } from '../../features/Products/productSlice';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import FullLoader from '../Loaders/FullLoader';
+import { addToCart } from '../../features/Cart/cartSlice';
 
 const ProductDetail = () => {
     //* //////////////////DISPATCH, SELECTOR, PARAMS////////////////////////
-
     const { productId } = useParams();
     const dispatch = useDispatch();
     const productData = useSelector((state) => state.products.product);
@@ -27,8 +27,17 @@ const ProductDetail = () => {
         setActiveVariant(index);
         setActiveImage(0);
     };
-    ////////////////////Drived states////////////////////////
 
+    //* ////////////////// Drived states ////////////////////////
+
+    const foundInCart = useSelector((state) =>
+        state.cart?.data?.data?.items.find(
+            (product) =>
+                product.productId === productId &&
+                product.variationIndex === activeVariant
+        )
+    );
+    console.log('variant', activeVariant, foundInCart);
     const imageToBePreviewed = `${PRODCTS_IMAGE_URL}/${product?.variations[activeVariant]?.images[activeImage]}`;
 
     //* ///////////////////// EFFECTS   ///////////////////////
@@ -38,12 +47,17 @@ const ProductDetail = () => {
         dispatch(fetchproductById(productId));
     }, [productId, dispatch]);
 
+    //* ///////////////////// FUNCTIONS   ///////////////////////
+    const handleAddToCart = () => {
+        !foundInCart
+            ? dispatch(addToCart({ productId, variationIndex: activeVariant }))
+            : console.log('FOUND ID', foundInCart.productId);
+    };
     //! //////////////////RETURN////////////////////////
 
     return (
         <div className='details-main'>
             <FullLoader isLoading={isLoading} />
-
             {!isLoading && error && (
                 <h3 className='error-message'>ERROR! {error?.message}</h3>
             )}
@@ -124,8 +138,17 @@ const ProductDetail = () => {
                                     }
                                 </p>
                             </div>
-                            <button className='add-cart'>
-                                Add to cart <FaCartPlus />
+                            <button
+                                className='add-cart'
+                                style={
+                                    foundInCart && { backgroundColor: 'red' }
+                                }
+                                onClick={handleAddToCart}
+                            >
+                                {!foundInCart
+                                    ? 'Add to cart'
+                                    : 'Remove from cart'}{' '}
+                                <FaCartPlus />
                             </button>
                             <button className='add-wish'>
                                 Add to Wishlist <FaHeart />

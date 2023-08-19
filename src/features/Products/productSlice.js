@@ -24,13 +24,16 @@ const initialState = {
     },
 };
 
-export const fetchProducts = createAsyncThunk('blogs/fetchBlogs', async () => {
-    const response = await axios.get(`/products`);
-    return response.data;
-});
+export const fetchProducts = createAsyncThunk(
+    'products/fetchProducts',
+    async () => {
+        const response = await axios.get(`/products`);
+        return response.data;
+    }
+);
 
 export const fetchproductById = createAsyncThunk(
-    'blogs/fetchBlogById',
+    'products/fetchProductById',
     async (productId) => {
         const response = await axios.get(`/products/${productId}`);
         return response.data;

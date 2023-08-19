@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { API_URL } from '../config/env';
 export default axios.create({
-    baseURL: 'https://eshop-goky.onrender.com/api',
+    baseURL: `${API_URL}/api`,
 });
