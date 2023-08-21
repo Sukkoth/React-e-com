@@ -53,6 +53,10 @@
     color: var(--light-color);
 }
 
+.product-menu .remove {
+    color: rgb(238, 79, 79);
+}
+
 .product-menu .icons:hover {
     transform: scale(1.4);
     transition: transform 500ms;
@@ -105,8 +109,8 @@
 
 @media screen and (min-width: 1200px) {
     .product {
-        height: 18rem;
-        width: 18rem;
+        height: 19rem;
+        width: 19rem;
     }
 }
 

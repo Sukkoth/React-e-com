@@ -15,8 +15,11 @@ body {
     /* font-family: 'Bitter', serif; */
 }
 
-button {
+button,
+input,
+select {
     font-family: 'Futura PT', sans-serif;
+    outline: none;
 }
 
 .nav {
@@ -41,8 +44,18 @@ button {
     margin: 0;
 }
 
+.nav-list .cart-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+}
 .nav-list .cart-counter {
-    color: #469597;
+    padding: 2px 7px;
+    background-color: #ddbeaa;
+    border-radius: 50%;
+    font-size: small;
 }
 
 .nav-list li a {

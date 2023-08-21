@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../features/Products/productSlice';
 import { useEffect } from 'react';
 import FullLoader from '../components/Loaders/FullLoader';
+import FullScreenErrorMessage from '../components/Error/FullScreenErrorMessage';
 const ProductsPage = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
 
     useEffect(() => {
         dispatch(fetchProducts());
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
@@ -24,9 +25,7 @@ const ProductsPage = () => {
                     </>
                 )}
                 {!products.isLoading && products.error && (
-                    <h3 style={{ minHeight: '90vh' }}>
-                        ERROR! {products.error?.message}
-                    </h3>
+                    <FullScreenErrorMessage message={products.error?.message} />
                 )}
             </div>
         </>

@@ -86,6 +86,10 @@
     border-radius: 0.5rem 0 0 0.5rem;
     cursor: pointer;
 }
+.cart-button-disabled {
+    background-color: #8bc5be;
+    cursor: not-allowed;
+}
 
 .cart-total {
     padding-inline: 2rem;

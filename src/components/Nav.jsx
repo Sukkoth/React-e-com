@@ -3,8 +3,12 @@ import icon from '../assets/icon-2.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaCartPlus, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const Nav = () => {
+    const cartCount = useSelector(
+        (state) => state.cart?.data?.data?.items?.length
+    );
     const [showNavMenu, setShowNavMenu] = useState(false);
     return (
         <nav className='nav'>
@@ -33,9 +37,13 @@ const Nav = () => {
                         <a href='/'>Contact</a>
                     </li>
                     <li>
-                        <Link to='/cart'>
-                            <FaCartPlus /> Cart{' '}
-                            <span className='cart-counter'>1</span>
+                        <Link to='/cart' className='cart-items'>
+                            <FaCartPlus />
+                            {cartCount > 0 && (
+                                <span className='cart-counter'>
+                                    {cartCount}
+                                </span>
+                            )}
                         </Link>
                     </li>
                 </ul>

@@ -171,6 +171,11 @@ p {
     transition: background-color 300ms;
 }
 
+.variants .removeItem {
+    background: var(--teritiary-color);
+    color: rgb(248, 9, 9);
+}
+
 .variants .add-wish {
     color: grey;
 }
@@ -193,6 +198,7 @@ p {
 
 @media screen and (min-width: 600px) {
     .variants .add-cart,
+    .variants .removeItem,
     .variants .add-wish {
         width: 70%;
         margin-inline: auto;

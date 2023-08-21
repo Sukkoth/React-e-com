@@ -6,7 +6,9 @@ import { FaCartPlus, FaHeart } from 'react-icons/fa';
 import { fetchproductById } from '../../features/Products/productSlice';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import FullLoader from '../Loaders/FullLoader';
-import { addToCart } from '../../features/Cart/cartSlice';
+import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
+import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
+import { BsCartPlusFill, BsFillCartXFill } from 'react-icons/bs';
 
 const ProductDetail = () => {
     //* //////////////////DISPATCH, SELECTOR, PARAMS////////////////////////
@@ -33,7 +35,7 @@ const ProductDetail = () => {
     const foundInCart = useSelector((state) =>
         state.cart?.data?.data?.items.find(
             (product) =>
-                product.productId === productId &&
+                product.productId._id === productId &&
                 product.variationIndex === activeVariant
         )
     );
@@ -51,7 +53,7 @@ const ProductDetail = () => {
     const handleAddToCart = () => {
         !foundInCart
             ? dispatch(addToCart({ productId, variationIndex: activeVariant }))
-            : console.log('FOUND ID', foundInCart.productId);
+            : dispatch(removeCartItem(foundInCart._id));
     };
     //! //////////////////RETURN////////////////////////
 
@@ -59,7 +61,7 @@ const ProductDetail = () => {
         <div className='details-main'>
             <FullLoader isLoading={isLoading} />
             {!isLoading && error && (
-                <h3 className='error-message'>ERROR! {error?.message}</h3>
+                <FullScreenErrorMessage message={error?.message} />
             )}
             {!isLoading && !error && product && (
                 <>
@@ -139,16 +141,21 @@ const ProductDetail = () => {
                                 </p>
                             </div>
                             <button
-                                className='add-cart'
-                                style={
-                                    foundInCart && { backgroundColor: 'red' }
+                                className={
+                                    !foundInCart ? `add-cart` : `removeItem`
                                 }
                                 onClick={handleAddToCart}
                             >
-                                {!foundInCart
-                                    ? 'Add to cart'
-                                    : 'Remove from cart'}{' '}
-                                <FaCartPlus />
+                                {!foundInCart ? (
+                                    <>
+                                        Add to Cart
+                                        <BsCartPlusFill />
+                                    </>
+                                ) : (
+                                    <>
+                                        Remove from cart <BsFillCartXFill />
+                                    </>
+                                )}
                             </button>
                             <button className='add-wish'>
                                 Add to Wishlist <FaHeart />

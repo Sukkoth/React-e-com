@@ -31,6 +31,23 @@ export const addToCart = createAsyncThunk(
     }
 );
 
+export const removeCartItem = createAsyncThunk(
+    'cart/removeFromCart',
+    async (cartItemId, { dispatch }) => {
+        const response = await axios.delete(`/carts/${cartItemId}`);
+        dispatch(fetchCartData());
+        return response.data;
+    }
+);
+
+export const updateCartItem = createAsyncThunk(
+    'cart/updateCartItem',
+    async (item) => {
+        const response = await axios.put(`/cart/${item._id}`, item);
+        return response.data;
+    }
+);
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -66,5 +83,7 @@ const cartSlice = createSlice({
 });
 
 export const cartSelector = (state) => state.cart.data;
+export const cartIsLoadingSelector = (state) => state.cart.isLoading;
+export const cartErrorSelector = (state) => state.cart.error;
 
 export default cartSlice;
