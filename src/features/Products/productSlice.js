@@ -32,6 +32,14 @@ export const fetchProducts = createAsyncThunk(
     }
 );
 
+export const fetchFeaturedProducts = createAsyncThunk(
+    'products/fetchFeaturedProducts',
+    async () => {
+        const response = await axios.get(`/products/featured`);
+        return response.data;
+    }
+);
+
 export const fetchproductById = createAsyncThunk(
     'products/fetchProductById',
     async (productId) => {
@@ -44,6 +52,7 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     extraReducers: (builder) => {
+        //*PRODUCTS
         builder.addCase(fetchProducts.pending, (state) => {
             state.products.isLoading = true;
             state.products.error = '';
@@ -57,6 +66,8 @@ const productsSlice = createSlice({
             state.products.error = action.error;
         });
 
+        //*PRODUCT BY ID
+
         builder.addCase(fetchproductById.pending, (state) => {
             state.product.isLoading = true;
             state.product.error = '';
@@ -69,7 +80,24 @@ const productsSlice = createSlice({
             state.product.isLoading = false;
             state.product.error = action.error;
         });
+
+        //* FEATURED PRODUCTS
+
+        builder.addCase(fetchFeaturedProducts.pending, (state) => {
+            state.featuredProducts.isLoading = true;
+            state.featuredProducts.error = '';
+        });
+        builder.addCase(fetchFeaturedProducts.fulfilled, (state, action) => {
+            state.featuredProducts.isLoading = false;
+            state.featuredProducts.data = action.payload;
+        });
+        builder.addCase(fetchFeaturedProducts.rejected, (state, action) => {
+            state.featuredProducts.isLoading = false;
+            state.featuredProducts.error = action.error;
+        });
     },
 });
 
+export const featuredProductsSelector = (state) =>
+    state.products.featuredProducts;
 export default productsSlice;

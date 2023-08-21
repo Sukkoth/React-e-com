@@ -124,12 +124,12 @@
 
 @media screen and (min-width: 1000px) {
     .featured .f-products .f-product {
-        width: 20rem;
-        height: 25.5rem;
+        width: 18rem;
+        height: 24rem;
     }
 
     .featured .f-products .f-product .image-container {
-        height: 20rem;
+        height: 18rem;
     }
     .featured .f-products .f-product h3 {
         font-size: 1.2rem;
