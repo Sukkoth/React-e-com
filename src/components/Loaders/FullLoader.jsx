@@ -1,5 +1,5 @@
 import React from 'react';
-import './FullLoader.css';
+import './fullLoader.css';
 import { ScaleLoader } from 'react-spinners';
 
 const FullLoader = ({ isLoading }) => {
