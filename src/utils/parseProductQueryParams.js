@@ -7,7 +7,14 @@ const parseProductQueryParams = (queryParam = {}) => {
         if (queryKey === 'limit') {
             return (parsedString += `limit=${queryParam[queryKey]}`);
         }
+        if (queryKey === 'categories') {
+            return queryParam[queryKey].length > 0
+                ? (parsedString +=
+                      '&' + `category[in]=${queryParam[queryKey].join(',')}`)
+                : '';
+        }
     });
+    // console.log('parsed string', parsedString);
     return parsedString;
 };
 

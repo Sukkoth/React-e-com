@@ -1,9 +1,9 @@
 import headhphone from '../../assets/products/phone-2.jpg';
 import { useSelector } from 'react-redux';
-import { topCategoriesSelector } from '../../features/Categories/categoriesSlice';
+import { categoriesSelector } from '../../features/Categories/categoriesSlice';
 
 const PopularCategories = () => {
-    const categories = useSelector(topCategoriesSelector);
+    const categories = useSelector(categoriesSelector);
     const topCategories = categories
         ?.slice()
         .sort((a, b) => b?.productsCount - a?.productsCount)

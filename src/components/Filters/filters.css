@@ -26,6 +26,10 @@
 
 .filters .form .submit {
     width: 90%;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filters .form .filter {
@@ -33,6 +37,7 @@
     margin-bottom: 0.7rem;
     text-align: start;
     width: 11.5rem;
+    border-radius: 2rem;
 }
 
 .filter ul {
@@ -49,6 +54,11 @@
 .filter label {
     margin-left: 0.3rem;
     font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.form input {
+    cursor: pointer;
 }
 
 .filter h3 {

@@ -34,6 +34,6 @@ const categoriesSlice = createSlice({
     },
 });
 
-export const topCategoriesSelector = (state) => state.categories.data;
+export const categoriesSelector = (state) => state.categories.data;
 
 export default categoriesSlice;

@@ -25,19 +25,34 @@ const Nav = () => {
             <div className={`nav-menu ${showNavMenu ? 'show-nav-menu' : ''}`}>
                 <ul className='nav-list'>
                     <li>
-                        <Link to='/'>Home</Link>
+                        <Link to='/' onClick={() => setShowNavMenu(false)}>
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        <Link to='/products'>Products</Link>
+                        <Link
+                            to='/products'
+                            onClick={() => setShowNavMenu(false)}
+                        >
+                            Products
+                        </Link>
                     </li>
                     <li>
-                        <a href='/'>About</a>
+                        <a href='/' onClick={() => setShowNavMenu(false)}>
+                            About
+                        </a>
                     </li>
                     <li>
-                        <a href='/'>Contact</a>
+                        <a href='/' onClick={() => setShowNavMenu(false)}>
+                            Contact
+                        </a>
                     </li>
                     <li>
-                        <Link to='/cart' className='cart-items'>
+                        <Link
+                            to='/cart'
+                            className='cart-items'
+                            onClick={() => setShowNavMenu(false)}
+                        >
                             <FaCartPlus />
                             {cartCount > 0 && (
                                 <span className='cart-counter'>

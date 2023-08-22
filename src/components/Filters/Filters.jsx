@@ -1,9 +1,47 @@
 import { useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import './filters.css';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { categoriesSelector } from '../../features/Categories/categoriesSlice';
+import {
+    changePage,
+    fetchProducts,
+    updateQueryCategories,
+} from '../../features/Products/productSlice';
 const Filters = () => {
+    const queryOptions = useSelector(
+        (state) => state?.products?.products?.queryOptions
+    );
+    const categories = useSelector(categoriesSelector);
     const [showFilters, setShowFilters] = useState(true);
+    const [selectedCategories, setSelectedCategories] = useState(
+        queryOptions.categories || []
+    );
+
+    const dispatch = useDispatch();
+
+    const handleCategory = (categoryId) => {
+        selectedCategories.includes(categoryId)
+            ? setSelectedCategories(
+                  selectedCategories.filter(
+                      (selected) => selected !== categoryId
+                  )
+              )
+            : setSelectedCategories([...selectedCategories, categoryId]);
+    };
+
+    const handleFilterFormSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateQueryCategories(selectedCategories));
+        dispatch(changePage(1));
+        dispatch(fetchProducts());
+    };
+
+    const handleClearAllFilters = () => {
+        console.log('cleard');
+        dispatch(updateQueryCategories([]));
+        dispatch(fetchProducts());
+    };
 
     return (
         <div className='filters'>
@@ -17,43 +55,29 @@ const Filters = () => {
                 </span>
             </h3>
             {showFilters && (
-                <form className='form'>
+                <form className='form' onSubmit={handleFilterFormSubmit}>
                     <div className='filter'>
                         <h3>Categories</h3>
                         <ul>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                    className='filter-checkbox'
-                                />
-                                <label htmlFor='household'>HouseHold</label>
-                            </li>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>Electronics</label>
-                            </li>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>Clothes</label>
-                            </li>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>Watches</label>
-                            </li>
+                            {categories.map((category) => (
+                                <li key={category?._id}>
+                                    <input
+                                        type='checkbox'
+                                        name={category?.name}
+                                        id={category?._id}
+                                        className='filter-checkbox'
+                                        onChange={() =>
+                                            handleCategory(category?._id)
+                                        }
+                                        checked={selectedCategories.includes(
+                                            category?._id
+                                        )}
+                                    />
+                                    <label htmlFor={category?._id}>
+                                        {category?.name}
+                                    </label>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className='filter'>
@@ -130,46 +154,21 @@ const Filters = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className='filter'>
-                        <h3>Colors</h3>
-                        <ul>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>HouseHold</label>
-                            </li>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>Electronics</label>
-                            </li>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>Clothes</label>
-                            </li>
-                            <li>
-                                <input
-                                    type='checkbox'
-                                    name='household'
-                                    id='household'
-                                />
-                                <label htmlFor='household'>Watches</label>
-                            </li>
-                        </ul>
-                    </div>
 
                     <div className='submit'>
-                        <button className='btn '>Apply</button>
+                        <button className='btn'>Apply</button>
+                        <button
+                            type='button'
+                            onClick={handleClearAllFilters}
+                            className='btn'
+                            style={{
+                                backgroundColor: '#c5c4c5',
+                                boxShadow: 'none',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Clear
+                        </button>
                     </div>
                 </form>
             )}

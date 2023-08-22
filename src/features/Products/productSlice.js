@@ -10,6 +10,7 @@ const initialState = {
         queryOptions: {
             page: 1,
             limit: 9,
+            categories: [],
         },
     },
     product: {
@@ -63,6 +64,9 @@ const productsSlice = createSlice({
         changePageLimit: (state, action) => {
             state.products.queryOptions.limit = action.payload;
         },
+        updateQueryCategories: (state, action) => {
+            state.products.queryOptions.categories = action.payload;
+        },
     },
     extraReducers: (builder) => {
         //*PRODUCTS
@@ -114,5 +118,6 @@ const productsSlice = createSlice({
 export const featuredProductsSelector = (state) =>
     state.products.featuredProducts;
 
-export const { changePage, changePageLimit } = productsSlice.actions;
+export const { changePage, changePageLimit, updateQueryCategories } =
+    productsSlice.actions;
 export default productsSlice;
