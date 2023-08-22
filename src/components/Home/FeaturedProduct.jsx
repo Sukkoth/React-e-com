@@ -12,7 +12,7 @@ const FeaturedProduct = ({ product }) => {
                     src={`${PRODCTS_IMAGE_URL}/${productImg}`}
                     alt='prod_img'
                 />
-                <AiFillHeart className='icon' />
+                <AiOutlineHeart className='icon' />
             </div>
             <h3>Wireless Headphones</h3>
 

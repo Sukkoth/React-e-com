@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import './productDetail.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,10 +9,16 @@ import FullLoader from '../Loaders/FullLoader';
 import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 import { BsCartPlusFill, BsFillCartXFill } from 'react-icons/bs';
-
+import { useLocation } from 'react-router-dom';
 const ProductDetail = () => {
     //use this incase you want to redirect to specific variant than using default 0
-    const queryParams = new URLSearchParams(location.search);
+    const location = useLocation();
+
+    // Use useMemo to initialize queryParams
+    const queryParams = useMemo(
+        () => new URLSearchParams(location.search),
+        [location.search]
+    );
     //* //////////////////DISPATCH, SELECTOR, PARAMS////////////////////////
     const { productId } = useParams();
     const dispatch = useDispatch();
@@ -25,9 +31,7 @@ const ProductDetail = () => {
 
     //* //////////////////// states //////////////////////////
 
-    const [activeVariant, setActiveVariant] = useState(
-        parseInt(queryParams.get('activeVariant') - 1) || 0
-    );
+    const [activeVariant, setActiveVariant] = useState(0);
     const [activeImage, setActiveImage] = useState(0);
     const handleChangeVariant = (index) => {
         setActiveVariant(index);
@@ -53,6 +57,16 @@ const ProductDetail = () => {
         dispatch(fetchproductById(productId));
     }, [productId, dispatch]);
 
+    useEffect(() => {
+        let tempVariantIndex = parseInt(queryParams.get('activeVariant') - 1);
+        tempVariantIndex =
+            tempVariantIndex < 0
+                ? 0
+                : tempVariantIndex >= product?.variations?.length
+                ? 0
+                : tempVariantIndex;
+        setActiveVariant(tempVariantIndex);
+    }, [product, queryParams]);
     //* ///////////////////// FUNCTIONS   ///////////////////////
     const handleAddToCart = () => {
         !foundInCart
