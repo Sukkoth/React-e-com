@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import { FaTimes } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CartItem = ({ cartItem, onItemRemove }) => {
+    const navigate = useNavigate();
     const [itemQuantity, setItemQuantity] = useState(cartItem.quantity);
 
     const handleQuantityChange = (operator) => {
@@ -21,12 +22,25 @@ const CartItem = ({ cartItem, onItemRemove }) => {
 
     const stockQuantity =
         cartItem?.productId?.variations[cartItem.variationIndex]?.stockQuantity;
+    const totalPrice = Math.round(itemPrice * itemQuantity * 100) / 100;
 
     return (
         <div className='cart-item' key={cartItem._id}>
-            <img className='img' src={itemImg} alt='product_img' />
+            <img
+                className='img'
+                src={itemImg}
+                alt='product_img'
+                onClick={() =>
+                    navigate(
+                        `/products/${cartItem.productId._id}?activeVariant=${
+                            cartItem.variationIndex + 1
+                        }`
+                    )
+                }
+            />
 
             <div className='price'>Br {itemPrice}</div>
+            <div className='price'> {stockQuantity} </div>
             <div className='quantity'>
                 <div className='buttons'>
                     <button
@@ -55,7 +69,7 @@ const CartItem = ({ cartItem, onItemRemove }) => {
                 </div>
             </div>
             <div className='total'>
-                120.00$
+                Birr {totalPrice}
                 <span
                     onClick={() => onItemRemove(cartItem._id)}
                     style={{
@@ -72,6 +86,7 @@ const CartItem = ({ cartItem, onItemRemove }) => {
 CartItem.propTypes = {
     cartItem: PropTypes.object,
     onItemRemove: PropTypes.func,
+    onTotalChange: PropTypes.func,
 };
 
 export default CartItem;

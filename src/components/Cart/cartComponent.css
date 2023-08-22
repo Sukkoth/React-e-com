@@ -19,7 +19,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    border-block: solid 1px var(--primary-color);
+    border-block: solid 1px var(--light-color);
     padding: 0.5rem 0.5rem;
     cursor: pointer;
 }
@@ -58,6 +58,10 @@
     object-fit: cover;
     width: 4rem;
     height: 4rem;
+    transition: 400ms;
+}
+.cart-item .img:hover {
+    transform: scale(1.1);
 }
 
 .cart-item .buttons {

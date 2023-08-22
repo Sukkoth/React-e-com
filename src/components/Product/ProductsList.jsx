@@ -4,6 +4,12 @@ import Pagination from '../Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
 import './productList.css';
 
+/**
+ * page = 1,
+ *totalResults = 100,
+ *pageSize = 5,
+ *handlePageChange,
+ */
 const ProductsList = ({ title, products }) => {
     const { pathname } = useLocation();
     return (
@@ -12,13 +18,16 @@ const ProductsList = ({ title, products }) => {
             {products.data?.products?.map((product) => (
                 <Product product={product} key={product._id} />
             ))}
-            {pathname === '/products' && <Pagination />}
+            {pathname === '/products' && (
+                <Pagination totalResults={products.data?.productsCount} />
+            )}
         </div>
     );
 };
 
 ProductsList.propTypes = {
     title: PropTypes.string,
+    products: PropTypes.array,
 };
 ProductsList.defaultProps = {
     title: 'Products',

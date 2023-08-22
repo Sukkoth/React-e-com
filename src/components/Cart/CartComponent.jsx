@@ -37,6 +37,7 @@ const CartComponent = () => {
                         <div className='cart-item'>
                             <p>Image</p>
                             <p>Unit Price</p>
+                            <p>In Stock</p>
                             <p>Quantity</p>
                             <p>Total Price</p>
                         </div>
@@ -45,7 +46,7 @@ const CartComponent = () => {
                     <div className='cart-total'>
                         <div className='total-item'>
                             <h3>Sub Total</h3>
-                            <p>$100</p>
+                            <p>Br 10000</p>
                         </div>
                         <div className='total-item'>
                             <label htmlFor='shippingCountry'>Region</label>

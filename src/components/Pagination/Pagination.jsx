@@ -1,13 +1,25 @@
 import PropTypes from 'prop-types';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import './pagination.css';
-const Pagination = ({
-    page = 1,
-    totalResults = 100,
-    pageSize = 5,
-    handlePageChange,
-}) => {
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    changePage,
+    fetchProducts,
+} from '../../features/Products/productSlice';
+
+const Pagination = ({ totalResults = 100 }) => {
+    const dispatch = useDispatch();
+    const { page, limit: pageSize } = useSelector(
+        (state) => state.products.products.queryOptions
+    );
+
+    const handlePageChange = (changePageTo) => {
+        dispatch(changePage(changePageTo));
+        dispatch(fetchProducts());
+    };
+
     if (totalResults === 0) return;
+
     return (
         <div className='pagination'>
             {/* Prev page */}
@@ -29,9 +41,11 @@ const Pagination = ({
                     >
                         1
                     </button>
-                    <button className='pagination-btn' disabled={true}>
-                        ...
-                    </button>
+                    {page > 3 && (
+                        <button className='pagination-btn' disabled={true}>
+                            ...
+                        </button>
+                    )}
                 </>
             )}
 
@@ -47,7 +61,7 @@ const Pagination = ({
 
             {/* NEXT PAGE NUMBER */}
             <button className='pagination-btn active'>{page}</button>
-            {page < parseInt(totalResults / pageSize) && (
+            {page < totalResults / pageSize && (
                 <button
                     className='pagination-btn'
                     onClick={() => handlePageChange(page + 1)}
@@ -57,7 +71,7 @@ const Pagination = ({
             )}
 
             {/* LAST PAGE */}
-            {page + 1 < parseInt(totalResults / pageSize) && (
+            {page + 1 < totalResults / pageSize && (
                 <>
                     <button className='pagination-btn' disabled={true}>
                         ...
@@ -74,7 +88,7 @@ const Pagination = ({
             )}
 
             {/* NEXT PAGE  */}
-            {page < parseInt(totalResults / pageSize) && (
+            {page < totalResults / pageSize && (
                 <button
                     className='pagination-btn'
                     onClick={() => handlePageChange(page + 1)}
@@ -87,9 +101,9 @@ const Pagination = ({
 };
 
 Pagination.propTypes = {
-    page: PropTypes.number,
+    // page: PropTypes.number,
     totalResults: PropTypes.number,
-    pageSize: PropTypes.number,
+    // pageSize: PropTypes.number,
     handlePageChange: PropTypes.func,
 };
 

@@ -16,7 +16,6 @@ const Product = ({ product }) => {
             (pr) => pr.variationIndex === 0 && pr.productId._id === product._id
         )
     );
-    console.log(product.name, foundInCart);
     const handleCartAddRemove = () => {
         !foundInCart
             ? dispatch(

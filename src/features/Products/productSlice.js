@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../utils/axios';
+import parseProductQueryParams from '../../utils/parseProductQueryParams';
 
 const initialState = {
     products: {
@@ -8,7 +9,7 @@ const initialState = {
         data: [],
         queryOptions: {
             page: 1,
-            limit: 6,
+            limit: 9,
         },
     },
     product: {
@@ -26,8 +27,12 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
-    async () => {
-        const response = await axios.get(`/products`);
+    async (_, { getState }) => {
+        const response = await axios.get(
+            `/products/?${parseProductQueryParams(
+                getState().products.products.queryOptions
+            )}`
+        );
         return response.data;
     }
 );
@@ -51,6 +56,14 @@ export const fetchproductById = createAsyncThunk(
 const productsSlice = createSlice({
     name: 'products',
     initialState,
+    reducers: {
+        changePage: (state, action) => {
+            state.products.queryOptions.page = action.payload;
+        },
+        changePageLimit: (state, action) => {
+            state.products.queryOptions.limit = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         //*PRODUCTS
         builder.addCase(fetchProducts.pending, (state) => {
@@ -100,4 +113,6 @@ const productsSlice = createSlice({
 
 export const featuredProductsSelector = (state) =>
     state.products.featuredProducts;
+
+export const { changePage, changePageLimit } = productsSlice.actions;
 export default productsSlice;

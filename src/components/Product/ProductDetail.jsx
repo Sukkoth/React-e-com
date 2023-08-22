@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './productDetail.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaCartPlus, FaHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import { fetchproductById } from '../../features/Products/productSlice';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import FullLoader from '../Loaders/FullLoader';
@@ -11,6 +11,8 @@ import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 import { BsCartPlusFill, BsFillCartXFill } from 'react-icons/bs';
 
 const ProductDetail = () => {
+    //use this incase you want to redirect to specific variant than using default 0
+    const queryParams = new URLSearchParams(location.search);
     //* //////////////////DISPATCH, SELECTOR, PARAMS////////////////////////
     const { productId } = useParams();
     const dispatch = useDispatch();
@@ -23,7 +25,9 @@ const ProductDetail = () => {
 
     //* //////////////////// states //////////////////////////
 
-    const [activeVariant, setActiveVariant] = useState(0);
+    const [activeVariant, setActiveVariant] = useState(
+        parseInt(queryParams.get('activeVariant') - 1) || 0
+    );
     const [activeImage, setActiveImage] = useState(0);
     const handleChangeVariant = (index) => {
         setActiveVariant(index);
@@ -39,7 +43,7 @@ const ProductDetail = () => {
                 product.variationIndex === activeVariant
         )
     );
-    console.log('variant', activeVariant, foundInCart);
+    // console.log('variant', activeVariant, foundInCart);
     const imageToBePreviewed = `${PRODCTS_IMAGE_URL}/${product?.variations[activeVariant]?.images[activeImage]}`;
 
     //* ///////////////////// EFFECTS   ///////////////////////
