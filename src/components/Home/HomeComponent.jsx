@@ -1,6 +1,6 @@
 import HomePageBanner1 from '../Banners/HomePageBanner1';
 import FeaturedProducts from './FeaturedProducts';
-import './homeComponent.css';
+import './homeComponentStyle.css';
 import Intro from './Intro';
 
 const HomeComponent = () => {
