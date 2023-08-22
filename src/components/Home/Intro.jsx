@@ -4,6 +4,7 @@ import { CiBadgeDollar } from 'react-icons/ci';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import { LiaShippingFastSolid } from 'react-icons/lia';
 import headhphone from '../../assets/products/phone-2.jpg';
+import PopularCategories from './PopularCategories';
 const Intro = () => {
     return (
         <>
@@ -50,64 +51,7 @@ const Intro = () => {
                     </div>
                 </div>
             </div>
-            <div className='popular-categories'>
-                <h4 className='title'> Popular Categories</h4>
-                <div className='category'>
-                    <div className='img-container'>
-                        <img src={headhphone} alt='category_img' />
-                    </div>
-                    <div className='details'>
-                        <h3>Clothes</h3>
-                        <p>214 Items</p>
-                    </div>
-                </div>
-
-                <div className='category'>
-                    <div className='img-container'>
-                        <img src={headhphone} alt='category_img' />
-                    </div>
-                    <div className='details'>
-                        <h3>Clothes</h3>
-                        <p>214 Items</p>
-                    </div>
-                </div>
-                <div className='category'>
-                    <div className='img-container'>
-                        <img src={headhphone} alt='category_img' />
-                    </div>
-                    <div className='details'>
-                        <h3>Clothes</h3>
-                        <p>214 Items</p>
-                    </div>
-                </div>
-                <div className='category'>
-                    <div className='img-container'>
-                        <img src={headhphone} alt='category_img' />
-                    </div>
-                    <div className='details'>
-                        <h3>Clothes</h3>
-                        <p>214 Items</p>
-                    </div>
-                </div>
-                <div className='category'>
-                    <div className='img-container'>
-                        <img src={headhphone} alt='category_img' />
-                    </div>
-                    <div className='details'>
-                        <h3>Clothes</h3>
-                        <p>214 Items</p>
-                    </div>
-                </div>
-                <div className='category'>
-                    <div className='img-container'>
-                        <img src={headhphone} alt='category_img' />
-                    </div>
-                    <div className='details'>
-                        <h3>Clothes</h3>
-                        <p>214 Items</p>
-                    </div>
-                </div>
-            </div>
+            <PopularCategories />
         </>
     );
 };

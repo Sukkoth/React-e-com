@@ -13,7 +13,6 @@ const FeaturedProducts = () => {
         dispatch(fetchFeaturedProducts());
     });
     const featuredProducts = useSelector(featuredProductsSelector);
-    console.log(featuredProducts?.data);
     return (
         <section className='featured'>
             <h4>Featured Products</h4>

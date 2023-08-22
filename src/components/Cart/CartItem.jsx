@@ -70,7 +70,7 @@ const CartItem = ({ cartItem, onItemRemove }) => {
 };
 
 CartItem.propTypes = {
-    cartItem: PropTypes.array,
+    cartItem: PropTypes.object,
     onItemRemove: PropTypes.func,
 };
 

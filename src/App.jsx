@@ -6,15 +6,8 @@ import { Routes, Route } from 'react-router-dom';
 import ProductsPage from './Pages/ProductsPage';
 import CartPage from './Pages/CartPage';
 import ViewProductPage from './Pages/ViewProductPage';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchCartData } from './features/Cart/cartSlice';
 
 function App() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchCartData());
-    }, [dispatch]);
     return (
         <main className='main'>
             <Nav />
