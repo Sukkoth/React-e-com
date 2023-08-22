@@ -1,6 +1,6 @@
 .product {
     font-weight: 300;
-    background-color: var(--teritiary-color);
+    background-color: var(--light-color);
     height: 16rem;
     width: 16rem;
     position: relative;
@@ -45,12 +45,12 @@
 
 .product-menu:hover {
     cursor: pointer;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(80px);
 }
 
 .product-menu .icons {
     font-size: 1.8rem;
-    color: var(--light-color);
+    color: var(--primary-color);
 }
 
 .product-menu .remove {

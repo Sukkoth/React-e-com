@@ -35,5 +35,7 @@ const categoriesSlice = createSlice({
 });
 
 export const categoriesSelector = (state) => state.categories.data;
+export const categoriesLoadingSelector = (state) => state.categories.isLoading;
+export const categoriesErrorSelector = (state) => state.categories.error;
 
 export default categoriesSlice;

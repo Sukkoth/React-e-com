@@ -1,13 +1,5 @@
 footer {
-    background: rgb(187, 198, 200);
-    background: linear-gradient(
-        90deg,
-        rgba(187, 198, 200, 1) 0%,
-        rgba(91, 161, 153, 1) 22%,
-        rgba(91, 161, 153, 1) 50%,
-        rgba(91, 161, 153, 1) 81%,
-        rgba(187, 198, 200, 1) 100%
-    );
+    background: #1e293b;
     padding: 1.2em;
     display: flex;
     justify-content: space-evenly;

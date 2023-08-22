@@ -35,33 +35,37 @@ const Product = ({ product }) => {
                     `${PRODCTS_IMAGE_URL}/${product?.variations[0]?.images[0]}` ||
                     phone1
                 }
-                alt='product image'
+                alt={product?.name}
                 className='img'
             />
             <div className='product-menu'>
-                <Link to={`/products/${product?._id}`}>
+                <Link to={`/products/${product?._id}`} title={'Search'}>
                     <FaSearch className='icons' />
                 </Link>
 
                 {foundInCart ? (
                     <BsFillCartXFill
+                        title={'Remove from cart'}
                         className='icons remove'
                         onClick={handleCartAddRemove}
                     />
                 ) : (
                     <BsCartPlusFill
+                        title={'Add to cart'}
                         className='icons'
                         onClick={handleCartAddRemove}
                     />
                 )}
                 {!foundInCart ? (
                     <AiOutlineHeart
+                        title={'Add to wishlist'}
                         className='icons'
                         onClick={handleWishAddRemove}
                     />
                 ) : (
                     <AiFillHeart
                         className='icons remove'
+                        title='Remove from wishlist'
                         onClick={handleWishAddRemove}
                     />
                 )}

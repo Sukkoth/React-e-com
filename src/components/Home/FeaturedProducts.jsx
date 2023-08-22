@@ -6,6 +6,7 @@ import {
     fetchFeaturedProducts,
 } from '../../features/Products/productSlice';
 import { useState } from 'react';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const FeaturedProducts = () => {
     const dispatch = useDispatch();
@@ -15,12 +16,19 @@ const FeaturedProducts = () => {
     const featuredProducts = useSelector(featuredProductsSelector);
     return (
         <section className='featured'>
-            <h4>Featured Products</h4>
-            <div className='f-products'>
-                {featuredProducts?.data?.products?.map((product) => (
-                    <FeaturedProduct key={product._id} product={product} />
-                ))}
-            </div>
+            <>
+                <h4>Featured Products</h4>
+                <div className='f-products'>
+                    {featuredProducts?.isLoading && <ScaleLoader />}
+                    {!featuredProducts?.isLoading &&
+                        featuredProducts?.data?.products?.map((product) => (
+                            <FeaturedProduct
+                                key={product._id}
+                                product={product}
+                            />
+                        ))}
+                </div>
+            </>
         </section>
     );
 };

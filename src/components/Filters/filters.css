@@ -33,7 +33,7 @@
 }
 
 .filters .form .filter {
-    box-shadow: 0px 5px 10px 1px #c5c4c5;
+    /* box-shadow: 0px 5px 10px 1px #c5c4c5; */
     margin-bottom: 0.7rem;
     text-align: start;
     width: 11.5rem;
@@ -43,12 +43,11 @@
 .filter ul {
     margin-top: 0;
     list-style: none;
-    padding: 1.2rem 1.4rem;
+    /* padding: 1.2rem 1.4rem; */
 }
 
 .filter ul li {
-    margin-bottom: 0.1rem;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.2rem;
 }
 
 .filter label {
@@ -63,10 +62,9 @@
 
 .filter h3 {
     text-align: center;
-    padding: 0.8rem 2rem;
+    padding: 0.5rem 0.8rem;
     margin: 0;
-    padding-bottom: 0.1rem;
-    background-color: var(--teritiary-color);
+    background-color: var(--light-color);
 }
 
 @media screen and (max-width: 600px) {
@@ -78,7 +76,7 @@
 @media screen and (min-width: 800px) {
     .filters {
         width: 24%;
-        margin-left: 1rem;
+        /* margin-left: 1rem; */
         margin-top: 0;
     }
 
@@ -88,9 +86,12 @@
 
     .filters ul {
         width: 100%;
+        padding: 0 1rem;
+        overflow: hidden;
     }
     .filter label {
         font-size: 1.2rem;
+        font-weight: 300;
     }
 }
 

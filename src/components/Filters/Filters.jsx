@@ -80,7 +80,7 @@ const Filters = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className='filter'>
+                    {/* <div className='filter'>
                         <h3>Price</h3>
                         <ul>
                             <li>
@@ -153,7 +153,7 @@ const Filters = () => {
                                 <label htmlFor='household'>Watches</label>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
 
                     <div className='submit'>
                         <button className='btn'>Apply</button>

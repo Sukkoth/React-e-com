@@ -123,9 +123,9 @@ p {
 }
 .variants .variant-nav p {
     margin: 0;
-    color: var(--light-color);
+    color: white;
     padding: 0.7rem 1rem;
-    background-color: var(--teritiary-color);
+    background-color: var(--light-color);
     cursor: pointer;
 }
 
@@ -180,7 +180,7 @@ p {
     color: grey;
 }
 .variants .add-wish:hover {
-    background-color: var(--teritiary-color);
+    background-color: var(--light-color);
     transition: background-color 300ms;
 }
 

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500;600;800&display=swap');
 @import url('https://fonts.cdnfonts.com/css/futura-pt');
 :root {
-    --primary-color: #469597;
-    --secondary-color: #5ba199;
-    --teritiary-color: #bbc6c8;
-    --light-color: #e5e3e4;
+    --primary-color: #1e293b;
+    --secondary-color: #475569;
+    --teritiary-color: #64748b;
+    --light-color: #cbd5e1;
     --brown-color: #ddbeaa;
 }
 
@@ -23,13 +23,8 @@ select {
 }
 
 .nav {
-    background: rgb(70, 149, 151);
-    background: linear-gradient(
-        90deg,
-        rgba(70, 149, 151, 1) 0%,
-        rgba(91, 161, 153, 1) 50%,
-        rgba(187, 198, 200, 1) 100%
-    );
+    background: #1e293b;
+    background: linear-gradient(100deg, #334155 0%, #334155 50%, #1e293b 100%);
     color: white;
     position: fixed;
     top: 0;
@@ -67,16 +62,16 @@ select {
 }
 
 .nav .logo-container {
-    padding-block: 5px;
+    padding-block: 0.8rem;
     margin-left: 1rem;
 }
 
 .nav .logo-container img {
-    width: 100%;
+    width: 80%;
 }
 
 .btn {
-    background-color: #5ba199;
+    background-color: #475569;
     border: none;
     padding-inline: 1.3rem;
     padding-block: 0.5rem;
@@ -89,7 +84,7 @@ select {
 }
 
 .btn:hover {
-    box-shadow: 0 0 20px 1px #469597;
+    box-shadow: 0 0 20px 1px #64748b;
 }
 
 .error-message {
@@ -112,14 +107,15 @@ select {
 
     .nav-menu {
         position: absolute;
-        background: rgb(70, 149, 151);
+        background: var(--primary-color);
         background: linear-gradient(
-            90deg,
-            rgba(70, 149, 151, 1) 0%,
-            rgba(91, 161, 153, 1) 50%,
-            rgba(187, 198, 200, 1) 100%
+            100deg,
+            #334155 0%,
+            #334155 50%,
+            #1e293b 100%
         );
-        margin-top: 14rem;
+
+        margin-top: 13rem;
         padding: 0;
         text-align: center;
         display: none;
@@ -191,7 +187,7 @@ select {
 @media screen and (min-width: 1200px) {
     .main,
     .nav {
-        width: 80%;
+        width: 90%;
         margin: auto;
     }
 

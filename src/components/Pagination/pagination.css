@@ -22,5 +22,5 @@
 
 .pagination-btn:hover,
 .active {
-    background-color: #8bc5be;
+    background-color: var(--light-color);
 }

@@ -6,7 +6,7 @@ const FullLoader = ({ isLoading }) => {
     return (
         isLoading && (
             <div className='loader-container'>
-                <ScaleLoader color='#5ba199' size={60} />
+                <ScaleLoader color='#475569' size={60} />
             </div>
         )
     );
