@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import icon from '../assets/icon-2.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaCartPlus, FaTimes } from 'react-icons/fa';
@@ -10,6 +10,15 @@ const Nav = () => {
         (state) => state.cart?.data?.data?.items?.length
     );
     const [showNavMenu, setShowNavMenu] = useState(false);
+
+    const onScrollCloseNavMenu = useCallback(() => {
+        if (showNavMenu) setShowNavMenu(false);
+    }, [showNavMenu]);
+    useEffect(() => {
+        document.addEventListener('scroll', onScrollCloseNavMenu);
+        return () =>
+            document.removeEventListener('scroll', onScrollCloseNavMenu);
+    }, [onScrollCloseNavMenu]);
     return (
         <nav className='nav'>
             <div className='logo-container'>
