@@ -52,6 +52,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     extraReducers: (builder) => {
+        //* FETCH CART DATA
         builder.addCase(fetchCartData.pending, (state) => {
             state.isLoading = true;
             state.error = {};
@@ -59,12 +60,13 @@ const cartSlice = createSlice({
         builder.addCase(fetchCartData.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data = action.payload;
-            state.error = {};
         });
         builder.addCase(fetchCartData.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error;
         });
+
+        //* ADD ITEM TO CART
 
         builder.addCase(addToCart.pending, (state) => {
             state.cart.isLoading = true;
@@ -73,9 +75,22 @@ const cartSlice = createSlice({
         builder.addCase(addToCart.fulfilled, (state, action) => {
             state.cart.isLoading = false;
             state.cart.data = action.payload;
-            state.cart.error = {};
         });
         builder.addCase(addToCart.rejected, (state, action) => {
+            state.cart.isLoading = false;
+            state.cart.error = action.error;
+        });
+
+        //* REMOVE ITEM FROM CART
+        builder.addCase(removeCartItem.pending, (state) => {
+            state.cart.isLoading = true;
+            state.error = {};
+        });
+        builder.addCase(removeCartItem.fulfilled, (state) => {
+            state.cart.isLoading = false;
+            state.cart.data = [];
+        });
+        builder.addCase(removeCartItem.rejected, (state, action) => {
             state.cart.isLoading = false;
             state.cart.error = action.error;
         });

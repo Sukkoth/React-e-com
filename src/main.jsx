@@ -7,9 +7,11 @@ import store from './store/store.js';
 import { Provider } from 'react-redux';
 import { fetchCategories } from './features/Categories/categoriesSlice.js';
 import { fetchCartData } from './features/Cart/cartSlice';
+import { getWishList } from './features/WishList/wishListSlice.js';
 
 store.dispatch(fetchCategories());
 store.dispatch(fetchCartData());
+store.dispatch(getWishList());
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>

@@ -173,7 +173,7 @@ p {
 
 .variants .removeItem {
     background: var(--teritiary-color);
-    color: rgb(248, 9, 9);
+    color: var(--light-color);
 }
 
 .variants .add-wish {

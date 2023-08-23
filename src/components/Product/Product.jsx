@@ -8,6 +8,7 @@ import { PRODCTS_IMAGE_URL } from '../../config/env';
 import './product.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
+import PropTypes from 'prop-types';
 
 const Product = ({ product }) => {
     const dispatch = useDispatch();
@@ -16,14 +17,18 @@ const Product = ({ product }) => {
             (pr) => pr.variationIndex === 0 && pr.productId._id === product._id
         )
     );
+    const cartStatusIsLoading = useSelector(
+        (state) => state.cart.cart.isLoading
+    );
     const handleCartAddRemove = () => {
-        !foundInCart
-            ? dispatch(
-                  addToCart({
-                      productId: product._id,
-                  })
-              )
-            : dispatch(removeCartItem(foundInCart._id));
+        if (!cartStatusIsLoading)
+            !foundInCart
+                ? dispatch(
+                      addToCart({
+                          productId: product._id,
+                      })
+                  )
+                : dispatch(removeCartItem(foundInCart._id));
     };
     const handleWishAddRemove = () => {
         alert('liked');
@@ -72,6 +77,10 @@ const Product = ({ product }) => {
             </div>
         </div>
     );
+};
+
+Product.propTypes = {
+    product: PropTypes.object,
 };
 
 export default Product;

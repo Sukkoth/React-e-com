@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import './productDetail.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaHeart } from 'react-icons/fa';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { fetchproductById } from '../../features/Products/productSlice';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import FullLoader from '../Loaders/FullLoader';
@@ -10,6 +10,15 @@ import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 import { BsCartPlusFill, BsFillCartXFill } from 'react-icons/bs';
 import { useLocation } from 'react-router-dom';
+import {
+    addToWishList,
+    wishItemSelector,
+    removeFromWishList,
+    wishItemStatusSelector,
+} from '../../features/WishList/wishListSlice';
+
+import SyncLoader from 'react-spinners/SyncLoader';
+
 const ProductDetail = () => {
     //use this incase you want to redirect to specific variant than using default 0
     const location = useLocation();
@@ -47,6 +56,15 @@ const ProductDetail = () => {
                 product.variationIndex === activeVariant
         )
     );
+
+    const wishList = useSelector(wishItemSelector);
+    const wishListItemLoading = useSelector(wishItemStatusSelector);
+
+    const foundInWishList = wishList?.items.find(
+        (item) =>
+            item.product === productId && item.variationIndex === activeVariant
+    );
+    console.log('item loading', wishListItemLoading);
     // console.log('variant', activeVariant, foundInCart);
     const imageToBePreviewed = `${PRODCTS_IMAGE_URL}/${product?.variations[activeVariant]?.images[activeImage]}`;
 
@@ -73,6 +91,19 @@ const ProductDetail = () => {
             ? dispatch(addToCart({ productId, variationIndex: activeVariant }))
             : dispatch(removeCartItem(foundInCart._id));
     };
+
+    const handleAddToWishList = () => {
+        if (!wishListItemLoading)
+            !foundInWishList
+                ? dispatch(
+                      addToWishList({
+                          product: productId,
+                          variationIndex: activeVariant,
+                      })
+                  )
+                : dispatch(removeFromWishList(foundInWishList?._id));
+    };
+
     //! //////////////////RETURN////////////////////////
 
     return (
@@ -175,8 +206,29 @@ const ProductDetail = () => {
                                     </>
                                 )}
                             </button>
-                            <button className='add-wish'>
-                                Add to Wishlist <FaHeart />
+                            <button
+                                onClick={handleAddToWishList}
+                                className={
+                                    !foundInWishList ? 'add-wish' : 'removeItem'
+                                }
+                            >
+                                {wishListItemLoading && (
+                                    <SyncLoader
+                                        size={5}
+                                        style={{ padding: '0.001rem' }}
+                                    />
+                                )}
+                                {!wishListItemLoading && !foundInWishList && (
+                                    <>
+                                        Add to Wishlist
+                                        <BsHeart />
+                                    </>
+                                )}
+                                {!wishListItemLoading && foundInWishList && (
+                                    <>
+                                        Remove from Wishlist <BsHeartFill />
+                                    </>
+                                )}
                             </button>
 
                             <div className='product-details'></div>
