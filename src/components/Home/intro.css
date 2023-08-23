@@ -114,6 +114,9 @@
     .popular-categories {
         margin-top: 1rem;
     }
+    .popular-categories .title {
+        font-size: 2.1rem;
+    }
 
     .popular-categories .category {
         width: 100%;

@@ -75,6 +75,9 @@
 }
 
 @media screen and (max-width: 600px) {
+    .featured h4 {
+        font-size: 2.1rem;
+    }
     .featured .f-products .f-product {
         width: 10rem;
         height: 14.5rem;
