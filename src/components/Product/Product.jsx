@@ -8,7 +8,14 @@ import { PRODCTS_IMAGE_URL } from '../../config/env';
 import './product.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
+import {
+    addToWishList,
+    wishItemSelector,
+    removeFromWishList,
+    wishItemStatusSelector,
+} from '../../features/WishList/wishListSlice';
 import PropTypes from 'prop-types';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const Product = ({ product }) => {
     const dispatch = useDispatch();
@@ -20,6 +27,13 @@ const Product = ({ product }) => {
     const cartStatusIsLoading = useSelector(
         (state) => state.cart.cart.isLoading
     );
+    const wishList = useSelector(wishItemSelector);
+
+    const foundInWishList = wishList?.items.find(
+        (item) => item.product === product?._id && item.variationIndex === 0
+    );
+    const wishListItemLoading = useSelector(wishItemStatusSelector);
+
     const handleCartAddRemove = () => {
         if (!cartStatusIsLoading)
             !foundInCart
@@ -30,8 +44,16 @@ const Product = ({ product }) => {
                   )
                 : dispatch(removeCartItem(foundInCart._id));
     };
-    const handleWishAddRemove = () => {
-        alert('liked');
+    const handleAddToWishList = () => {
+        if (!wishListItemLoading)
+            !foundInWishList
+                ? dispatch(
+                      addToWishList({
+                          product: product?._id,
+                          variationIndex: 0,
+                      })
+                  )
+                : dispatch(removeFromWishList(foundInWishList?._id));
     };
     return (
         <div className='product'>
@@ -47,31 +69,34 @@ const Product = ({ product }) => {
                 <Link to={`/products/${product?._id}`} title={'Search'}>
                     <FaSearch className='icons' />
                 </Link>
-
-                {foundInCart ? (
+                {cartStatusIsLoading && <ClipLoader className='icons' />}
+                {!cartStatusIsLoading && foundInCart && (
                     <BsFillCartXFill
                         title={'Remove from cart'}
-                        className='icons remove'
+                        className='icons'
                         onClick={handleCartAddRemove}
                     />
-                ) : (
+                )}
+                {!cartStatusIsLoading && !foundInCart && (
                     <BsCartPlusFill
                         title={'Add to cart'}
                         className='icons'
                         onClick={handleCartAddRemove}
                     />
                 )}
-                {!foundInCart ? (
+                {wishListItemLoading && <ClipLoader className='icons' />}
+                {!wishListItemLoading && !foundInWishList && (
                     <AiOutlineHeart
                         title={'Add to wishlist'}
                         className='icons'
-                        onClick={handleWishAddRemove}
+                        onClick={handleAddToWishList}
                     />
-                ) : (
+                )}
+                {!wishListItemLoading && foundInWishList && (
                     <AiFillHeart
-                        className='icons remove'
+                        className='icons'
                         title='Remove from wishlist'
-                        onClick={handleWishAddRemove}
+                        onClick={handleAddToWishList}
                     />
                 )}
             </div>

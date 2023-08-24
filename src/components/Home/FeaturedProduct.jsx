@@ -10,14 +10,14 @@ const FeaturedProduct = ({ product }) => {
             <div className='image-container'>
                 <img
                     src={`${PRODCTS_IMAGE_URL}/${productImg}`}
-                    alt='prod_img'
+                    alt={product?.name || 'product_image'}
                 />
                 <AiOutlineHeart className='icon' />
             </div>
-            <h3>Wireless Headphones</h3>
+            <h3>{product?.name}</h3>
 
             <p>
-                Br 500
+                Br {product?.variations[0]?.price}
                 <span>
                     <FaCartPlus />
                 </span>

@@ -164,6 +164,7 @@ p {
 }
 .variants .add-cart {
     background: var(--primary-color);
+    border: solid 1px var(--primary-color);
 }
 
 .variants .add-cart:hover {
@@ -173,11 +174,15 @@ p {
 
 .variants .removeItem {
     background: var(--teritiary-color);
-    color: var(--light-color);
+}
+
+.variants .removeItem:hover {
+    background-color: var(--secondary-color);
 }
 
 .variants .add-wish {
-    color: grey;
+    color: var(--primary-color);
+    border: solid 1px var(--primary-color);
 }
 .variants .add-wish:hover {
     background-color: var(--light-color);

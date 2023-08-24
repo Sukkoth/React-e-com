@@ -33,7 +33,7 @@
 }
 
 .filters .form .filter {
-    /* box-shadow: 0px 5px 10px 1px #c5c4c5; */
+    box-shadow: 0px 5px 10px 1px rgb(225, 225, 225);
     margin-bottom: 0.7rem;
     text-align: start;
     width: 11.5rem;
@@ -43,7 +43,6 @@
 .filter ul {
     margin-top: 0;
     list-style: none;
-    /* padding: 1.2rem 1.4rem; */
 }
 
 .filter ul li {
