@@ -2,13 +2,19 @@ import { useCallback, useEffect, useState } from 'react';
 import icon from '../assets/icon-2.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaCartPlus, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../features/Auth/authSlice';
 
 const Nav = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const cartCount = useSelector(
         (state) => state.cart?.data?.data?.items?.length
     );
+
+    const auth = useSelector((state) => state.auth.auth.token);
+
     const [showNavMenu, setShowNavMenu] = useState(false);
 
     const onScrollCloseNavMenu = useCallback(() => {
@@ -19,6 +25,13 @@ const Nav = () => {
         return () =>
             document.removeEventListener('scroll', onScrollCloseNavMenu);
     }, [onScrollCloseNavMenu]);
+
+    const handleLogout = () => {
+        setShowNavMenu(false);
+        dispatch(logoutUser());
+        navigate('/');
+    };
+
     return (
         <nav className='nav'>
             <div className='logo-container'>
@@ -47,15 +60,41 @@ const Nav = () => {
                         </Link>
                     </li>
                     <li>
-                        <a href='/' onClick={() => setShowNavMenu(false)}>
+                        <Link to='/' onClick={() => setShowNavMenu(false)}>
                             About
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href='/' onClick={() => setShowNavMenu(false)}>
+                        <Link to='/' onClick={() => setShowNavMenu(false)}>
                             Contact
-                        </a>
+                        </Link>
                     </li>
+                    {!auth ? (
+                        <>
+                            {' '}
+                            <li>
+                                <Link
+                                    to='/register'
+                                    onClick={() => setShowNavMenu(false)}
+                                >
+                                    Register
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to='/login'
+                                    onClick={() => setShowNavMenu(false)}
+                                >
+                                    Login
+                                </Link>
+                            </li>
+                        </>
+                    ) : (
+                        <li>
+                            <Link onClick={handleLogout}>Logout</Link>
+                        </li>
+                    )}
+
                     <li>
                         <Link
                             to='/cart'

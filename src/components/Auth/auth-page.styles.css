@@ -1,0 +1,137 @@
+.auth-page {
+    min-height: 92.8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-page .container {
+    margin-block: 9rem 6rem;
+    border: solid 1px var(--primary-color);
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    background-color: white;
+}
+
+.auth-page .container .logo-container {
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+}
+
+.auth-page .container .logo-container img {
+    width: 100%;
+}
+
+.auth-page .container .logo-container h3 {
+    margin-block: 0.5rem;
+    font-size: 1.75rem;
+    color: var(--primary-color);
+}
+
+.auth-page .container .form-container {
+    margin-top: 1.5rem;
+}
+
+.auth-page .container .form-container .error-alert {
+    text-align: center;
+    color: red;
+    font-size: larger;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.auth-page .container .form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.auth-page .container .form-container .form-group .form-error {
+    color: red;
+    margin-top: -7px;
+    padding: 0;
+    margin-left: 1rem;
+}
+
+.auth-page .container .form-container .form-group label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.auth-page .container .form-container .form-group input {
+    width: 15rem;
+    padding-block: 0.5rem;
+    font-size: 16px;
+    padding-inline: 1rem;
+    border: solid 1px var(--teritiary-color);
+    border-radius: 1rem;
+    outline: none;
+    font-size: large;
+}
+.auth-page .container .form-container .form-group input:focus {
+    border-color: var(--light-color);
+    outline: solid 2px var(--primary-color);
+    outline-offset: 1px;
+    outline-width: 1px;
+}
+
+.auth-page .container .form-container .form-group .error-input {
+    border-color: red;
+}
+
+.form-container .auth-submit {
+    margin: auto;
+    margin-top: 2rem;
+    width: 17rem;
+    padding-block: 0.7rem;
+    border: solid 1px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 2rem;
+    font-weight: 500;
+}
+
+.form-container .auth-submit:hover {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.form-container .auth-alert {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form-container .auth-alert .action {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-container .auth-alert .action:hover {
+    color: var(--teritiary-color);
+}
+
+@media screen and (min-width: 600px) {
+    .auth-page .container {
+        padding-inline: 4rem;
+    }
+    .auth-page .container .form-container .form-group input {
+        width: 20rem;
+    }
+    .form-container .auth-submit {
+        width: 22.1rem;
+    }
+    .auth-page .container .logo-container {
+        width: 6rem;
+        margin-bottom: 2rem;
+    }
+}
