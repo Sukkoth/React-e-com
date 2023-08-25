@@ -19,7 +19,6 @@ const Register = () => {
         isLoading,
         auth,
     } = useSelector((state) => state.auth);
-    console.log('loader', isLoading);
     const token = useMemo(() => auth?.token, [auth.token]);
     useEffect(() => {
         token && navigate('/');
@@ -32,11 +31,8 @@ const Register = () => {
 
     const handleFormSubmit = (data) => {
         console.log('REGISTRATION', data);
-        // dispatch(
-        //     registerUser({
-        //         data,
-        //     })
-        // );
+        delete data.confirmPassword;
+        dispatch(registerUser(data));
     };
     return (
         <div className='auth-page'>
