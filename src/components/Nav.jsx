@@ -95,20 +95,22 @@ const Nav = () => {
                         </li>
                     )}
 
-                    <li>
-                        <Link
-                            to='/cart'
-                            className='cart-items'
-                            onClick={() => setShowNavMenu(false)}
-                        >
-                            <FaCartPlus />
-                            {cartCount > 0 && (
-                                <span className='cart-counter'>
-                                    {cartCount}
-                                </span>
-                            )}
-                        </Link>
-                    </li>
+                    {auth && (
+                        <li>
+                            <Link
+                                to='/cart'
+                                className='cart-items'
+                                onClick={() => setShowNavMenu(false)}
+                            >
+                                <FaCartPlus />
+                                {cartCount > 0 && (
+                                    <span className='cart-counter'>
+                                        {cartCount}
+                                    </span>
+                                )}
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>

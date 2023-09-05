@@ -1,4 +1,4 @@
-import { FaSearch } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import phone1 from '../../assets/products/headphone-1.jpg';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
@@ -20,7 +20,7 @@ const Product = ({ product }) => {
             />
             <div className='product-menu'>
                 <Link to={`/products/${product?._id}`} title={'Search'}>
-                    <FaSearch className='icons' />
+                    <FaEye className='icons' />
                 </Link>
                 <CartOperation type='icon' productId={product?._id} />
                 <WishlistOperations type='icon' productId={product?._id} />

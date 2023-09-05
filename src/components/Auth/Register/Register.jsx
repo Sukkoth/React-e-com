@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react';
 import '../auth-page.styles.css';
 import logo from '../../../assets/icon-21.png';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,7 +19,6 @@ const Register = () => {
         isLoading,
         auth,
     } = useSelector((state) => state.auth);
-    console.log('loader', isLoading);
     const token = useMemo(() => auth?.token, [auth.token]);
     useEffect(() => {
         token && navigate('/');
@@ -30,13 +29,9 @@ const Register = () => {
         formState: { errors: formErrors },
     } = useForm({ resolver: yupResolver(registrationSchema) });
 
+    console.log('API ERROR', apiError);
     const handleFormSubmit = (data) => {
-        console.log('REGISTRATION', data);
-        // dispatch(
-        //     registerUser({
-        //         data,
-        //     })
-        // );
+        dispatch(registerUser(data));
     };
     return (
         <div className='auth-page'>
@@ -65,6 +60,11 @@ const Register = () => {
                         {formErrors?.firstName && (
                             <p className='form-error'>
                                 {formErrors?.firstName?.message}
+                            </p>
+                        )}
+                        {apiError?.details?.firstName && (
+                            <p className='form-error'>
+                                {apiError?.details?.firstName?.message}
                             </p>
                         )}
                     </div>
@@ -142,9 +142,13 @@ const Register = () => {
                                 {formErrors?.confirmPassword?.message}
                             </p>
                         )}
+                        {apiError?.details?.confirmPassword && (
+                            <p className='form-error'>
+                                {apiError?.details?.confirmPassword?.message}
+                            </p>
+                        )}
                     </div>
                     <button className='auth-submit' type='submit'>
-                        {' '}
                         {isLoading ? (
                             <RiseLoader size={9} color='white' />
                         ) : (
@@ -153,7 +157,9 @@ const Register = () => {
                     </button>
                     <p className='auth-alert'>
                         Already have an account?{' '}
-                        <span className='action'>Login</span>
+                        <Link to={'/login'}>
+                            <span className='action'>Login</span>
+                        </Link>
                     </p>
                 </form>
             </div>

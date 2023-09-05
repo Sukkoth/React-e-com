@@ -31,6 +31,7 @@ export const login = createAsyncThunk('auth/login', async (userCredentials) => {
 export const registerUser = createAsyncThunk(
     'auth/register',
     async (userData) => {
+        delete userData.confirmPassword;
         try {
             const response = await axios.post('/users/auth/register', {
                 ...userData,
@@ -46,7 +47,7 @@ export const registerUser = createAsyncThunk(
             }
             return { user: response.data.user, token: response.data.token };
         } catch (error) {
-            console.log('REGISTRATION ERROR', error);
+            console.log('REGISTRATION ERROR', error.response.data);
             throw error.response.data;
         }
     }

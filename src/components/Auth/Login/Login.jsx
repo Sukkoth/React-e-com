@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../../utils/yupSchemas/loginSchema';
 import { RiseLoader } from 'react-spinners';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -92,7 +92,9 @@ const Login = () => {
                     </button>
                     <p className='auth-alert'>
                         {"Don't have an account yet?  "}
-                        <span className='action'>Register</span>
+                        <Link to='/register'>
+                            <span className='action'>Register</span>
+                        </Link>
                     </p>
                 </form>
             </div>

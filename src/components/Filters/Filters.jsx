@@ -13,7 +13,7 @@ const Filters = () => {
         (state) => state?.products?.products?.queryOptions
     );
     const categories = useSelector(categoriesSelector);
-    const [showFilters, setShowFilters] = useState(true);
+    const [showFilters, setShowFilters] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState(
         queryOptions.categories || []
     );

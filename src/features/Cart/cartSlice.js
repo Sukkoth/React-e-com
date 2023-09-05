@@ -21,7 +21,7 @@ export const addToCart = createAsyncThunk(
     'cart/addToCart',
     async ({ productId, variationIndex = 0 }, { dispatch }) => {
         const newCart = {
-            productId,
+            product: productId,
             variationIndex: variationIndex,
             quantity: 1,
         };

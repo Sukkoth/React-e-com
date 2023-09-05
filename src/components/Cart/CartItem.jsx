@@ -15,13 +15,13 @@ const CartItem = ({ cartItem, onItemRemove }) => {
     };
 
     const itemImg = `${PRODCTS_IMAGE_URL}/${
-        cartItem?.productId?.variations[cartItem.variationIndex]?.images[0]
+        cartItem?.product?.variations[cartItem.variationIndex]?.images[0]
     }`;
     const itemPrice =
-        cartItem?.productId?.variations[cartItem.variationIndex]?.price;
+        cartItem?.product?.variations[cartItem.variationIndex]?.price;
 
     const stockQuantity =
-        cartItem?.productId?.variations[cartItem.variationIndex]?.stockQuantity;
+        cartItem?.product?.variations[cartItem.variationIndex]?.stockQuantity;
     const totalPrice = Math.round(itemPrice * itemQuantity * 100) / 100;
 
     return (
@@ -32,7 +32,7 @@ const CartItem = ({ cartItem, onItemRemove }) => {
                 alt='product_img'
                 onClick={() =>
                     navigate(
-                        `/products/${cartItem.productId._id}?activeVariant=${
+                        `/products/${cartItem.product._id}?activeVariant=${
                             cartItem.variationIndex + 1
                         }`
                     )

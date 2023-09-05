@@ -4,6 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
 import { SyncLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 const CartOperations = ({
     productId,
     variationIndex = 0,
@@ -11,24 +12,30 @@ const CartOperations = ({
     showLoader = true,
 }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const auth = useSelector((state) => state.auth.auth.token);
     const foundInCart = useSelector((state) =>
         state.cart?.data?.data?.items.find(
             (product) =>
-                product?.productId?._id === productId &&
+                product?.product?._id === productId &&
                 product?.variationIndex === variationIndex
         )
     );
+
+    console.log(foundInCart);
 
     const cartStatusIsLoading = useSelector(
         (state) => state.cart.cart.isLoading
     );
 
     const handleCartAddRemove = () => {
+        if (!auth) navigate('/login');
         if (!cartStatusIsLoading)
             !foundInCart
                 ? dispatch(
                       addToCart({
                           productId: productId,
+                          variationIndex: variationIndex,
                       })
                   )
                 : dispatch(removeCartItem(foundInCart._id));

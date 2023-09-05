@@ -1,9 +1,6 @@
 import * as Yup from 'yup';
 
 const registrationSchema = Yup.object().shape({
-    username: Yup.string()
-        .required('Username is required')
-        .min(4, 'Username must be at least 4 characters'),
     email: Yup.string()
         .required('Email is required')
         .email('Invalid email format'),

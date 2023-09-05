@@ -9,6 +9,7 @@ import { ClipLoader, SyncLoader } from 'react-spinners';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const WishlistOperations = ({
     type = 'button',
@@ -17,6 +18,8 @@ const WishlistOperations = ({
     showLoader = true,
 }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const auth = useSelector((state) => state.auth.auth.token);
     const wishList = useSelector(wishItemSelector);
     const wishListItemLoading = useSelector(wishItemStatusSelector);
 
@@ -26,6 +29,8 @@ const WishlistOperations = ({
     );
 
     const handleAddToWishList = () => {
+        if (!auth) navigate('/login');
+
         if (!wishListItemLoading)
             !foundInWishList
                 ? dispatch(
