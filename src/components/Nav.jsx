@@ -2,18 +2,17 @@ import { useCallback, useEffect, useState } from 'react';
 import icon from '../assets/icon-2.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaCartPlus, FaTimes } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../features/Auth/authSlice';
 
 const Nav = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const cartCount = useSelector(
         (state) => state.cart?.data?.data?.items?.length
     );
 
-    const auth = useSelector((state) => state.auth.auth.token);
+    const auth = useSelector((state) => state.auth.auth);
 
     const [showNavMenu, setShowNavMenu] = useState(false);
 
@@ -28,8 +27,8 @@ const Nav = () => {
 
     const handleLogout = () => {
         setShowNavMenu(false);
+        location.href = '/';
         dispatch(logoutUser());
-        navigate('/');
     };
 
     return (
@@ -69,7 +68,7 @@ const Nav = () => {
                             Contact
                         </Link>
                     </li>
-                    {!auth ? (
+                    {!auth?.token ? (
                         <>
                             {' '}
                             <li>
@@ -95,21 +94,24 @@ const Nav = () => {
                         </li>
                     )}
 
-                    {auth && (
-                        <li>
-                            <Link
-                                to='/cart'
-                                className='cart-items'
-                                onClick={() => setShowNavMenu(false)}
-                            >
-                                <FaCartPlus />
-                                {cartCount > 0 && (
-                                    <span className='cart-counter'>
-                                        {cartCount}
-                                    </span>
-                                )}
-                            </Link>
-                        </li>
+                    {auth?.token && (
+                        <>
+                            <li>
+                                <Link
+                                    to='/cart'
+                                    className='cart-items'
+                                    onClick={() => setShowNavMenu(false)}
+                                >
+                                    <FaCartPlus />
+                                    {cartCount > 0 && (
+                                        <span className='cart-counter'>
+                                            {cartCount}
+                                        </span>
+                                    )}
+                                </Link>
+                            </li>
+                            <li>{auth?.user?.firstName}</li>
+                        </>
                     )}
                 </ul>
             </div>

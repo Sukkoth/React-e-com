@@ -7,10 +7,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../../utils/yupSchemas/loginSchema';
 import { RiseLoader } from 'react-spinners';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { fetchCartData } from '../../../features/Cart/cartSlice';
+import { getWishList } from '../../../features/WishList/wishListSlice';
 
 const Login = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const {
         error: apiError,
@@ -19,8 +20,12 @@ const Login = () => {
     } = useSelector((state) => state.auth);
     const token = useMemo(() => auth?.token, [auth.token]);
     useEffect(() => {
-        token && navigate('/');
-    }, [token, navigate]);
+        if (token) {
+            dispatch(fetchCartData());
+            dispatch(getWishList());
+            location.href = '/';
+        }
+    }, [token, dispatch]);
 
     useEffect(() => {
         dispatch(resetErrors());

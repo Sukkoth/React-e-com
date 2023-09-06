@@ -22,11 +22,14 @@ const CartOperations = ({
         )
     );
 
+    console.log(foundInCart);
+
     const cartStatusIsLoading = useSelector(
         (state) => state.cart.cart.isLoading
     );
 
     const handleCartAddRemove = () => {
+        console.log('index adding to cart', variationIndex);
         if (!auth) navigate('/login');
         if (!cartStatusIsLoading)
             !foundInCart

@@ -134,6 +134,7 @@ const ProductDetail = () => {
                                         {attribute?.value}
                                     </p>
                                 ))}
+                                <p>ID: {product?._id}</p>
                                 <p>
                                     <span>Price:</span> Br{' '}
                                     {product?.variations[activeVariant]?.price}

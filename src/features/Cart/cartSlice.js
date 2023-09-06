@@ -19,15 +19,22 @@ export const fetchCartData = createAsyncThunk('cart/fetchData', async () => {
 
 export const addToCart = createAsyncThunk(
     'cart/addToCart',
-    async ({ productId, variationIndex = 0 }, { dispatch }) => {
+    async (
+        { productId, variationIndex = 0 },
+        { dispatch, rejectWithValue }
+    ) => {
         const newCart = {
             product: productId,
             variationIndex: variationIndex,
             quantity: 1,
         };
-        const response = await axios.post('/carts', newCart);
-        dispatch(fetchCartData());
-        return response.data;
+        try {
+            const response = await axios.post('/carts', newCart);
+            dispatch(fetchCartData());
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
     }
 );
 
@@ -78,7 +85,7 @@ const cartSlice = createSlice({
         });
         builder.addCase(addToCart.rejected, (state, action) => {
             state.cart.isLoading = false;
-            state.cart.error = action.error;
+            state.cart.error = action.payload;
         });
 
         //* REMOVE ITEM FROM CART
