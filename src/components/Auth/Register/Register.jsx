@@ -36,6 +36,9 @@ const Register = () => {
 
     const handleFormSubmit = (data) => {
         dispatch(registerUser(data));
+        console.log('REGISTRATION', data);
+        delete data.confirmPassword;
+        dispatch(registerUser(data));
     };
     return (
         <div className='auth-page'>
