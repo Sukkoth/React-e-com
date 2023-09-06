@@ -16,7 +16,6 @@ const PopularCategories = () => {
         ?.slice()
         .sort((a, b) => b?.productsCount - a?.productsCount)
         .slice(0, 6);
-    console.log('url', categories[1]?.imageUrl[0]);
     return (
         <div className='popular-categories'>
             <h4 className='title'> Popular Categories</h4>

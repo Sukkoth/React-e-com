@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import registrationSchema from '../../../utils/yupSchemas/registrationSchema';
-import { registerUser } from '../../../features/Auth/authSlice';
+import { registerUser, resetErrors } from '../../../features/Auth/authSlice';
 import { RiseLoader } from 'react-spinners';
 
 const Register = () => {
@@ -23,13 +23,17 @@ const Register = () => {
     useEffect(() => {
         token && navigate('/');
     }, [token, navigate]);
+
+    useEffect(() => {
+        dispatch(resetErrors());
+    }, [dispatch]);
+
     const {
         register,
         handleSubmit,
         formState: { errors: formErrors },
     } = useForm({ resolver: yupResolver(registrationSchema) });
 
-    console.log('API ERROR', apiError);
     const handleFormSubmit = (data) => {
         dispatch(registerUser(data));
     };
@@ -108,6 +112,11 @@ const Register = () => {
                         {formErrors?.email && (
                             <p className='form-error'>
                                 {formErrors?.email?.message}
+                            </p>
+                        )}
+                        {apiError?.details?.email && (
+                            <p className='form-error'>
+                                {apiError?.details?.email?.message}
                             </p>
                         )}
                     </div>

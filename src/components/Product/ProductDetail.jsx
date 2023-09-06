@@ -40,7 +40,6 @@ const ProductDetail = () => {
 
     //* ////////////////// Drived states ////////////////////////
 
-    // console.log('variant', activeVariant, foundInCart);
     const imageToBePreviewed = `${PRODCTS_IMAGE_URL}/${product?.variations[activeVariant]?.images[activeImage]}`;
 
     //* ///////////////////// EFFECTS   ///////////////////////

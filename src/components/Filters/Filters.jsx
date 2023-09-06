@@ -38,7 +38,6 @@ const Filters = () => {
     };
 
     const handleClearAllFilters = () => {
-        console.log('cleard');
         dispatch(updateQueryCategories([]));
         dispatch(fetchProducts());
     };

@@ -8,29 +8,32 @@ const initialState = {
     auth: {},
 };
 
-export const login = createAsyncThunk('auth/login', async (userCredentials) => {
-    try {
-        const response = await axios.post('/users/auth/login', {
-            ...userCredentials,
-        });
-        if (response?.data?.token) {
-            localStorage.setItem(
-                'auth',
-                JSON.stringify({
-                    token: response.data.token,
-                    user: response.data.user,
-                })
-            );
+export const login = createAsyncThunk(
+    'auth/login',
+    async (userCredentials, { rejectWithValue }) => {
+        try {
+            const response = await axios.post('/users/auth/login', {
+                ...userCredentials,
+            });
+            if (response?.data?.token) {
+                localStorage.setItem(
+                    'auth',
+                    JSON.stringify({
+                        token: response.data.token,
+                        user: response.data.user,
+                    })
+                );
+            }
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
         }
-        return response.data;
-    } catch (error) {
-        throw error.response.data;
     }
-});
+);
 
 export const registerUser = createAsyncThunk(
     'auth/register',
-    async (userData) => {
+    async (userData, { rejectWithValue }) => {
         delete userData.confirmPassword;
         try {
             const response = await axios.post('/users/auth/register', {
@@ -47,8 +50,7 @@ export const registerUser = createAsyncThunk(
             }
             return { user: response.data.user, token: response.data.token };
         } catch (error) {
-            console.log('REGISTRATION ERROR', error.response.data);
-            throw error.response.data;
+            return rejectWithValue(error.response.data);
         }
     }
 );
@@ -60,6 +62,9 @@ const authSlice = createSlice({
         fetchUserFromLocal: (state) => {
             const localData = localStorage.getItem('auth');
             if (localData) state.auth = JSON.parse(localData);
+        },
+        resetErrors: (state) => {
+            state.error = {};
         },
         logoutUser: (state) => {
             localStorage.removeItem('auth');
@@ -78,7 +83,7 @@ const authSlice = createSlice({
         });
         builder.addCase(login.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = action.error;
+            state.error = action.payload;
         });
 
         //REGISTER
@@ -92,10 +97,11 @@ const authSlice = createSlice({
         });
         builder.addCase(registerUser.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = action.error;
+            state.error = action.payload;
         });
     },
 });
 
 export default authSlice;
-export const { fetchUserFromLocal, logoutUser } = authSlice.actions;
+export const { fetchUserFromLocal, logoutUser, resetErrors } =
+    authSlice.actions;

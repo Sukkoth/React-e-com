@@ -14,7 +14,6 @@ const parseProductQueryParams = (queryParam = {}) => {
                 : '';
         }
     });
-    // console.log('parsed string', parsedString);
     return parsedString;
 };
 

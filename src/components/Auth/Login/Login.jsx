@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import '../auth-page.styles.css';
 import logo from '../../../assets/icon-21.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../features/Auth/authSlice';
+import { login, resetErrors } from '../../../features/Auth/authSlice';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../../utils/yupSchemas/loginSchema';
@@ -22,6 +22,10 @@ const Login = () => {
         token && navigate('/');
     }, [token, navigate]);
 
+    useEffect(() => {
+        dispatch(resetErrors());
+    }, [dispatch]);
+
     const {
         register,
         handleSubmit,
@@ -29,7 +33,6 @@ const Login = () => {
     } = useForm({ resolver: yupResolver(loginSchema) });
 
     const handleFormSubmit = (data) => {
-        console.log('data', data);
         dispatch(
             login({ email: data.email.toLowerCase(), password: data.password })
         );
