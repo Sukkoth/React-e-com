@@ -116,26 +116,23 @@
     margin-bottom: 1rem;
 }
 
-.total-item select {
-    background-color: none;
-    border: solid 1px var(--primary-color);
+.total-item input,
+select {
+    width: 15rem;
+    padding-block: 0.5rem;
+    font-size: 16px;
+    padding-inline: 1rem;
+    border: solid 1px var(--teritiary-color);
     border-radius: 1rem;
-    padding: 0.3rem 4rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: large;
     outline: none;
-    color: var(--primary-color);
+    font-size: large;
 }
-
-.total-item input {
-    border: solid 1px var(--primary-color);
-    color: var(--primary-color);
-    outline: none;
-    width: 14rem;
-    padding: 0.3rem 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: large;
-    border-radius: 1rem;
+.total-item input:focus,
+select:focus {
+    border-color: var(--light-color);
+    outline: solid 2px var(--primary-color);
+    outline-offset: 1px;
+    outline-width: 1px;
 }
 
 .total-item button {
@@ -153,10 +150,11 @@
 
     .total-item select {
         padding-inline: 0.2rem;
+        width: 10rem;
     }
     .total-item input {
-        padding-inline: 0.2rem;
-        width: 7.9rem;
+        padding-inline: 01rem;
+        width: 8rem;
     }
 }
 
@@ -168,6 +166,9 @@
         width: 7.5rem;
         height: 7.5rem;
     }
+    .total-item select {
+        width: 17rem;
+    }
 }
 
 @media screen and (min-width: 1000px) {
@@ -175,5 +176,8 @@
         width: 40%;
         padding-right: 2rem;
         margin-left: 58%;
+    }
+    .total-item select {
+        width: 17rem;
     }
 }

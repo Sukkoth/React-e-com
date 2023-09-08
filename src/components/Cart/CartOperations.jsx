@@ -22,8 +22,6 @@ const CartOperations = ({
         )
     );
 
-    console.log(foundInCart);
-
     const cartStatusIsLoading = useSelector(
         (state) => state.cart.cart.isLoading
     );
