@@ -110,7 +110,6 @@ const Nav = () => {
                                     )}
                                 </Link>
                             </li>
-                            <li>{auth?.user?.firstName}</li>
                         </>
                     )}
                 </ul>

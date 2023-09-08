@@ -1,25 +1,33 @@
 import './cartComponent.css';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchCartData,
     cartSelector,
     cartIsLoadingSelector,
     cartErrorSelector,
+    
 } from '../../features/Cart/cartSlice';
+
+
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 import CartItemsList from './CartItemsList';
 import FullLoader from '../Loaders/FullLoader';
+import CartTotal from './CartTotal';
+import CartGrandTotal from './CartGrandTotal';
 
 const CartComponent = () => {
     const dispatch = useDispatch();
     const cart = useSelector(cartSelector);
     const cartIsLoading = useSelector(cartIsLoadingSelector);
     const cartError = useSelector(cartErrorSelector);
+   
 
     useEffect(() => {
         dispatch(fetchCartData());
     }, [dispatch]);
+
+
     const cartItems = cart?.data?.items || [];
 
     if (cartIsLoading) return <FullLoader isLoading={cartIsLoading} />;
@@ -44,10 +52,7 @@ const CartComponent = () => {
                         <CartItemsList cartItems={cartItems} />
                     </div>
                     <div className='cart-total'>
-                        <div className='total-item'>
-                            <h3>Sub Total</h3>
-                            <p>Br 10000</p>
-                        </div>
+                        <CartTotal/>
                         <div className='total-item'>
                             <label htmlFor='shippingCountry'>Region</label>
                             <select name='' id='shippingCountry'>
@@ -84,10 +89,7 @@ const CartComponent = () => {
                         <div className='total-item'>
                             <button className='btn'>Estimate Shipping</button>
                         </div>
-                        <div className='total-item'>
-                            <p>Grand Total</p>
-                            <p>$120</p>
-                        </div>
+                       <CartGrandTotal/>
 
                         <div className='total-item'>
                             <button className='btn'>Checkout</button>

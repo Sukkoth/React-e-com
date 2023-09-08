@@ -12,6 +12,7 @@ const store = configureStore({
         categories: categoriesSlice.reducer,
         wishlist: wishListSlice.reducer,
         auth: authSlice.reducer,
+        
     },
 });
 

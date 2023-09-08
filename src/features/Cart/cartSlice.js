@@ -10,6 +10,9 @@ const initialState = {
         error: false,
         data: {},
     },
+    grandTotal: 22222222,
+    subTotal: 11111111
+
 };
 
 export const fetchCartData = createAsyncThunk('cart/fetchData', async () => {
@@ -58,6 +61,19 @@ export const updateCartItem = createAsyncThunk(
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
+    reducers:{
+        subTotalCalculation: (state, action) => {
+            state.subTotal+=action.payload
+        },
+        grandTotalCalculation: (state, action) => {
+            //pass shipment price in argument 
+            //take if here from action.payload
+            //action.payload represents shipment price
+            //add shipment price and subTotal to get grand total
+            state.grandTotal+=action.payload + state.subTotal
+        }
+
+    },
     extraReducers: (builder) => {
         //* FETCH CART DATA
         builder.addCase(fetchCartData.pending, (state) => {
@@ -104,8 +120,11 @@ const cartSlice = createSlice({
     },
 });
 
+
 export const cartSelector = (state) => state.cart.data;
 export const cartIsLoadingSelector = (state) => state.cart.isLoading;
 export const cartErrorSelector = (state) => state.cart.error;
+
+export const {grandTotalCalculation, subTotalCalculation} = cartSlice.actions
 
 export default cartSlice;

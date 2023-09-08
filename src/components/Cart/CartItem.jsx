@@ -1,18 +1,31 @@
 import PropTypes from 'prop-types';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import { FaTimes } from 'react-icons/fa';
-import { useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { subTotalCalculation } from '../../features/Cart/cartSlice';
+import { removeCartItem } from '../../features/Cart/cartSlice';
 
-const CartItem = ({ cartItem, onItemRemove }) => {
+const CartItemComponent = ({ cartItem }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const handleRemoveItemFromCart = (itemId) => {
+        dispatch(removeCartItem(itemId));
+    };
+
     const [itemQuantity, setItemQuantity] = useState(cartItem.quantity);
+
 
     const handleQuantityChange = (operator) => {
         operator === '-'
             ? setItemQuantity((prev) => prev - 1)
             : setItemQuantity((prev) => prev + 1);
     };
+
+    useEffect(() => {
+        dispatch(subTotalCalculation(itemQuantity))
+    }, [itemQuantity, dispatch])
 
     const itemImg = `${PRODCTS_IMAGE_URL}/${
         cartItem?.product?.variations[cartItem.variationIndex]?.images[0]
@@ -71,7 +84,7 @@ const CartItem = ({ cartItem, onItemRemove }) => {
             <div className='total'>
                 Birr {totalPrice}
                 <span
-                    onClick={() => onItemRemove(cartItem._id)}
+                    onClick={() => handleRemoveItemFromCart(cartItem._id)}
                     style={{
                         padding: '0.5rem',
                     }}
@@ -83,10 +96,13 @@ const CartItem = ({ cartItem, onItemRemove }) => {
     );
 };
 
-CartItem.propTypes = {
+CartItemComponent.propTypes = {
     cartItem: PropTypes.object,
     onItemRemove: PropTypes.func,
     onTotalChange: PropTypes.func,
 };
+
+
+const CartItem = CartItemComponent;
 
 export default CartItem;
