@@ -6,27 +6,24 @@ import {
     cartSelector,
     cartIsLoadingSelector,
     cartErrorSelector,
-    
 } from '../../features/Cart/cartSlice';
-
 
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 import CartItemsList from './CartItemsList';
 import FullLoader from '../Loaders/FullLoader';
 import CartTotal from './CartTotal';
 import CartGrandTotal from './CartGrandTotal';
+import Shipping from './Shipping';
 
 const CartComponent = () => {
     const dispatch = useDispatch();
     const cart = useSelector(cartSelector);
     const cartIsLoading = useSelector(cartIsLoadingSelector);
     const cartError = useSelector(cartErrorSelector);
-   
 
     useEffect(() => {
         dispatch(fetchCartData());
     }, [dispatch]);
-
 
     const cartItems = cart?.data?.items || [];
 
@@ -52,44 +49,9 @@ const CartComponent = () => {
                         <CartItemsList cartItems={cartItems} />
                     </div>
                     <div className='cart-total'>
-                        <CartTotal/>
-                        <div className='total-item'>
-                            <label htmlFor='shippingCountry'>Region</label>
-                            <select name='' id='shippingCountry'>
-                                <option value='Oromia'>Oromia</option>
-                                <option value='Amhara'>Amhara</option>
-                                <option value='Gambella'>Gambella</option>
-                                <option value='Somali'>Somali</option>
-                                <option value='south'>South Region</option>
-                                <option value='Sidama'>Sidama</option>
-                                <option value='Tigrai'>Tigrai</option>
-                            </select>
-                        </div>
-                        <div className='total-item'>
-                            <label htmlFor='city'>City</label>
-                            <select name='' id='city'>
-                                <option value='Oromia'>Oromia</option>
-                                <option value='Amhara'>Amhara</option>
-                                <option value='Gambella'>Gambella</option>
-                                <option value='Somali'>Somali</option>
-                                <option value='south'>South Region</option>
-                                <option value='Sidama'>Sidama</option>
-                                <option value='Tigrai'>Tigrai</option>
-                            </select>
-                        </div>
-                        <div className='total-item'>
-                            <label htmlFor='phone'>Phone </label>
-                            <input type='text' id='phone' />
-                        </div>
-                        <div className='total-item'>
-                            <p>Shipment</p>
-                            <p>$12</p>
-                        </div>
-
-                        <div className='total-item'>
-                            <button className='btn'>Estimate Shipping</button>
-                        </div>
-                       <CartGrandTotal/>
+                        <CartTotal />
+                        <Shipping />
+                        <CartGrandTotal />
 
                         <div className='total-item'>
                             <button className='btn'>Checkout</button>

@@ -82,10 +82,16 @@ select {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    cursor: pointer;
 }
 
 .btn:hover {
-    box-shadow: 0 0 20px 1px #64748b;
+    background-color: var(--teritiary-color);
+}
+
+.disabled-btn {
+    background-color: var(--teritiary-color);
+    cursor: not-allowed;
 }
 
 .error-message {

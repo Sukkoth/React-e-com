@@ -66,6 +66,7 @@ const cartSlice = createSlice({
             state.subTotal = parseFloat(
                 (state.subTotal + action.payload).toFixed(2)
             );
+            state.grandTotal = state.grandTotal + state.subTotal;
         },
         grandTotalCalculation: (state, action) => {
             //pass shipment price in argument
@@ -75,6 +76,11 @@ const cartSlice = createSlice({
             state.grandTotal = parseFloat(
                 (state.grandTotal + action.payload + state.subTotal).toFixed(2)
             );
+        },
+        calculateShippingPrice: (state) => {
+            //real shipping price calculation takes place here, but this is just a demo
+            state.shipmentPrice = Math.floor(Math.random(1) * 100);
+            state.grandTotal = state.grandTotal + state.shipmentPrice;
         },
     },
     extraReducers: (builder) => {
@@ -87,13 +93,18 @@ const cartSlice = createSlice({
         builder.addCase(fetchCartData.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data = action.payload;
-            state.subTotal = action.payload.data.items.reduce((acc, item) => {
-                return (
-                    acc +
-                    item.product.variations[item.variationIndex].price *
-                        item.quantity
-                );
-            }, 0);
+            state.subTotal = parseFloat(
+                action.payload.data.items
+                    .reduce((acc, item) => {
+                        return (
+                            acc +
+                            item.product.variations[item.variationIndex].price *
+                                item.quantity
+                        );
+                    }, 0)
+                    .toFixed(2)
+            );
+            state.grandTotal = state.subTotal;
         });
         builder.addCase(fetchCartData.rejected, (state, action) => {
             state.isLoading = false;
@@ -135,6 +146,10 @@ export const cartSelector = (state) => state.cart.data;
 export const cartIsLoadingSelector = (state) => state.cart.isLoading;
 export const cartErrorSelector = (state) => state.cart.error;
 
-export const { grandTotalCalculation, subTotalCalculation } = cartSlice.actions;
+export const {
+    grandTotalCalculation,
+    subTotalCalculation,
+    calculateShippingPrice,
+} = cartSlice.actions;
 
 export default cartSlice;

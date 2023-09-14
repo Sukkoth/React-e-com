@@ -140,6 +140,10 @@ select:focus {
     margin-block: 2rem 1rem;
 }
 
+.disabled-btn:hover {
+    box-shadow: none;
+}
+
 @media screen and (max-width: 600px) {
     .cart-button {
         padding-block: 0.3rem;
