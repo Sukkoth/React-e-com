@@ -135,7 +135,8 @@ select:focus {
     outline-width: 1px;
 }
 
-.total-item button {
+.total-item button,
+a {
     margin: auto;
     margin-block: 2rem 1rem;
 }

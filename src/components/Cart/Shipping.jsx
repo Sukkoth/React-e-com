@@ -13,7 +13,7 @@ const Shipping = () => {
         if (!country || !subCity || !city) {
             return;
         }
-        dispatch(calculateShippingPrice());
+        dispatch(calculateShippingPrice({ country, subCity, city }));
     }
 
     return (

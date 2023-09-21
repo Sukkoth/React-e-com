@@ -1,11 +1,12 @@
 import './cartComponent.css';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchCartData,
     cartSelector,
     cartIsLoadingSelector,
     cartErrorSelector,
+    tempCartSelector,
 } from '../../features/Cart/cartSlice';
 
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
@@ -14,6 +15,8 @@ import FullLoader from '../Loaders/FullLoader';
 import CartTotal from './CartTotal';
 import CartGrandTotal from './CartGrandTotal';
 import Shipping from './Shipping';
+import Payment from './Payment';
+import PlaceOrderButton from './PlaceOrderButton';
 
 const CartComponent = () => {
     const dispatch = useDispatch();
@@ -52,9 +55,10 @@ const CartComponent = () => {
                         <CartTotal />
                         <Shipping />
                         <CartGrandTotal />
+                        <Payment />
 
                         <div className='total-item'>
-                            <button className='btn'>Checkout</button>
+                            <PlaceOrderButton />
                         </div>
                     </div>
                 </>

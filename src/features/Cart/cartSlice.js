@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../utils/axios';
 
 const initialState = {
+    tempCart: null,
     isLoading: false,
     error: false,
     data: [],
@@ -13,6 +14,7 @@ const initialState = {
     grandTotal: 0,
     subTotal: 0,
     shipmentPrice: 0,
+    paymentMethod: 'stripe',
 };
 
 export const fetchCartData = createAsyncThunk('cart/fetchData', async () => {
@@ -64,8 +66,16 @@ const cartSlice = createSlice({
     reducers: {
         subTotalCalculation: (state, action) => {
             state.subTotal = parseFloat(
-                (state.subTotal + action.payload).toFixed(2)
+                (state.subTotal + action.payload?.price).toFixed(2)
             );
+            state.tempCart = state.tempCart?.map((item) =>
+                item?._id === action.payload?.id
+                    ? action?.payload?.price >= 0
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : { ...item, quantity: item.quantity - 1 }
+                    : item
+            );
+
             state.grandTotal = state.grandTotal + state.subTotal;
         },
         grandTotalCalculation: (state, action) => {
@@ -77,10 +87,14 @@ const cartSlice = createSlice({
                 (state.grandTotal + action.payload + state.subTotal).toFixed(2)
             );
         },
-        calculateShippingPrice: (state) => {
+        calculateShippingPrice: (state, action) => {
             //real shipping price calculation takes place here, but this is just a demo
             state.shipmentPrice = Math.floor(Math.random(1) * 100);
             state.grandTotal = state.grandTotal + state.shipmentPrice;
+            state.shipmentAddress = action.payload;
+        },
+        setPaymentMethod: (state, action) => {
+            state.paymentMethod = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -93,6 +107,7 @@ const cartSlice = createSlice({
         builder.addCase(fetchCartData.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data = action.payload;
+            state.tempCart = [...action.payload.data.items];
             state.subTotal = parseFloat(
                 action.payload.data.items
                     .reduce((acc, item) => {
@@ -143,6 +158,7 @@ const cartSlice = createSlice({
 });
 
 export const cartSelector = (state) => state.cart.data;
+export const tempCartSelector = (state) => state.cart.tempCart;
 export const cartIsLoadingSelector = (state) => state.cart.isLoading;
 export const cartErrorSelector = (state) => state.cart.error;
 
@@ -150,6 +166,7 @@ export const {
     grandTotalCalculation,
     subTotalCalculation,
     calculateShippingPrice,
+    setPaymentMethod,
 } = cartSlice.actions;
 
 export default cartSlice;

@@ -20,16 +20,20 @@ const CartItemComponent = ({ cartItem }) => {
         if (operator === '-') {
             setItemQuantity((prev) => prev - 1);
             dispatch(
-                subTotalCalculation(
-                    -cartItem.product.variations[cartItem.variationIndex].price
-                )
+                subTotalCalculation({
+                    price: -cartItem.product.variations[cartItem.variationIndex]
+                        .price,
+                    id: cartItem?._id,
+                })
             );
         } else {
             setItemQuantity((prev) => prev + 1);
             dispatch(
-                subTotalCalculation(
-                    cartItem.product.variations[cartItem.variationIndex].price
-                )
+                subTotalCalculation({
+                    price: cartItem.product.variations[cartItem.variationIndex]
+                        .price,
+                    id: cartItem?._id,
+                })
             );
         }
     };
