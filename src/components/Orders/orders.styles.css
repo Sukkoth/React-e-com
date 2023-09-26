@@ -1,0 +1,114 @@
+.orders-page {
+    margin-top: 8rem;
+    min-height: 56rem;
+    padding: 2rem;
+}
+
+.orders-page * {
+    font-size: large;
+}
+
+.orders-page .orders {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.orders-page .orders .orders-summary ul {
+    list-style: none;
+}
+
+td,
+th {
+    border: 1px solid #777;
+    padding: 1rem;
+    text-align: center;
+}
+
+.status {
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.status a {
+    background: none;
+    outline: none;
+    border: solid 1px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* tbody tr:nth-child(odd) {
+    background: var(--light-color);
+} */
+
+@media screen and (max-width: 800px) {
+    .orders-page {
+        padding-inline: 1rem;
+    }
+    .orders-page .orders {
+        flex-direction: column;
+        align-items: center;
+    }
+    .orders-page .orders .table {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .orders-page .orders .orders-summary {
+        width: 25%;
+        background: #1e293b;
+        background: linear-gradient(
+            100deg,
+            #334155 0%,
+            #334155 50%,
+            #1e293b 100%
+        );
+        color: white;
+        height: 25rem;
+        border-radius: 2rem;
+        padding: 1rem;
+        border: solid 1px var(--primary-color);
+        /* box-shadow: 5px 5px 20px 5px var(--teritiary-color); */
+    }
+
+    .orders-page .orders .orders-summary h1 {
+        font-size: 2rem;
+        text-decoration: underline;
+        text-align: center;
+    }
+    .orders-page .orders .orders-summary ul li {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .orders-page .orders .orders-summary ul li .icon {
+        margin-right: 0.7rem;
+        font-size: x-large;
+    }
+    .orders-page .orders .orders-summary ul li span {
+        font-size: larger;
+    }
+
+    .orders-page .orders .table {
+        width: 70%;
+    }
+}

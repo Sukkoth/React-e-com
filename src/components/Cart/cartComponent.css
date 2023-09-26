@@ -30,20 +30,19 @@
 }
 
 .cart-button {
-    background-color: var(--secondary-color);
-    border: none;
     padding-inline: 1.3rem;
     padding-block: 0.5rem;
     border-radius: 1rem;
     font-family: 'Poppins', sans-serif;
-    color: white;
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    color: var(--primary-color);
+    border: solid 1px;
 }
 
 .cart-button:hover {
-    background-color: var(--teritiary-color);
+    background-color: var(--light-color);
 }
 
 /* headers */
@@ -74,11 +73,12 @@
 .cart-item .buttons .btn-add,
 .btn-sub {
     padding-inline: 0.5rem;
+    color: var(--primary-color);
 }
 
 .btn-qty {
     border-radius: 0;
-    border-inline: solid 1px;
+    border-inline: none;
     cursor: pointer;
 }
 
@@ -91,7 +91,7 @@
     cursor: pointer;
 }
 .cart-button-disabled {
-    background-color: var(--teritiary-color);
+    background-color: var(--light-color);
     cursor: not-allowed;
 }
 

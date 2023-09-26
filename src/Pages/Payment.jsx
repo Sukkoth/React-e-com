@@ -16,7 +16,9 @@ const Payment = () => {
     console.log(order);
     if (order.isLoading) return <FullLoader />;
     if (!order.isLoading && order?.data?.code === '201')
-        return (location.href = API_URL + 'create-checkout-session');
+        return (location.href =
+            API_URL +
+            `/create-checkout-session?orderId=${order?.data?.order?._id}`);
 };
 
 export default Payment;

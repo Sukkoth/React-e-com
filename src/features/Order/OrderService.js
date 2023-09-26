@@ -12,3 +12,15 @@ export const placeOrder = createAsyncThunk(
         }
     }
 );
+
+export const getAllOrders = createAsyncThunk(
+    'order/getAll',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get('/order');
+            return response?.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);

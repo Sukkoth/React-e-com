@@ -98,8 +98,17 @@ const Nav = () => {
                         <>
                             <li>
                                 <Link
+                                    to='/orders'
+                                    // className='cart-items'
+                                    onClick={() => setShowNavMenu(false)}
+                                >
+                                    Orders
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     to='/cart'
-                                    className='cart-items'
+                                    // className='cart-items'
                                     onClick={() => setShowNavMenu(false)}
                                 >
                                     <FaCartPlus />

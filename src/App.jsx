@@ -9,6 +9,7 @@ import ViewProductPage from './Pages/ViewProductPage';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import PaymentPage from './Pages/Payment';
+import OrdersPage from './Pages/OrdersPage';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     Component={ViewProductPage}
                 ></Route>
                 <Route path='/cart' Component={CartPage}></Route>
+                <Route path='/orders' Component={OrdersPage}></Route>
                 <Route path='/payment' Component={PaymentPage} />
                 <Route path='/login' Component={LoginPage}></Route>
                 <Route path='/register' Component={RegisterPage}></Route>
