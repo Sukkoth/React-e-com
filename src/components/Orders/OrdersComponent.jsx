@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrders } from '../../features/Order/OrderService';
 import formatDateToDaysAgo from '../../utils/formatDate';
 import { API_URL } from '../../config/env';
+import FullLoader from '../Loaders/FullLoader';
 
 import {
     BsCart4,
@@ -48,79 +49,81 @@ const OrdersComponent = () => {
         delivered: <BsClipboardCheck color='green' />,
     };
 
-    return (
-        <div className='orders-page'>
-            <div className='orders'>
-                <div className='orders-summary'>
-                    <h1>Orders Summary</h1>
-                    <ul>
-                        <li>
-                            <BsCart4 className='icon' />{' '}
-                            <span>Total Items: {totalItems}</span>
-                        </li>
-                        <li>
-                            <GiWallet
-                                className='icon'
-                                style={{ color: 'green' }}
-                            />
-                            <span>Total Paid: {totalPaid}$</span>
-                        </li>
-                        <li>
-                            <AiOutlineWarning
-                                className='icon'
-                                style={{ color: 'red' }}
-                            />
-                            <span>Total Unpaid: {totalUnpaid}$</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className='table'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Id</th>
-                                <th>Placed Date</th>
-                                <th>Items</th>
-                                <th>Grand Total</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {!isLoading &&
-                                !error &&
-                                data?.orders?.map((order, index) => (
-                                    <tr key={order?._id}>
-                                        <td>{index + 1}</td>
-                                        <td>{order?._id}</td>
-                                        <td>
-                                            {formatDateToDaysAgo(
-                                                order?.createdAt
-                                            )}
-                                        </td>
-                                        <td>{order?.items?.length}</td>
-                                        <td>{order?.grandTotal}</td>
-                                        <td className='status'>
-                                            {statusIcons[order?.status] || ''}
-                                            <span>{order?.status}</span>
-                                            {order?.status === 'unpaid' ? (
-                                                <Link
-                                                    to={`${API_URL}/create-checkout-session?orderId=${order?._id}`}
-                                                >
-                                                    Pay now
-                                                </Link>
-                                            ) : (
-                                                ''
-                                            )}
-                                        </td>
-                                    </tr>
-                                ))}
-                        </tbody>
-                    </table>
+    if (isLoading) return <FullLoader isLoading={isLoading} />;
+
+    if (!isLoading)
+        return (
+            <div className='orders-page'>
+                <div className='orders'>
+                    <div className='orders-summary'>
+                        <h1>Orders Summary</h1>
+                        <ul>
+                            <li>
+                                <BsCart4 className='icon' />{' '}
+                                <span>Total Items: {totalItems}</span>
+                            </li>
+                            <li>
+                                <GiWallet
+                                    className='icon'
+                                    style={{ color: 'green' }}
+                                />
+                                <span>Total Paid: {totalPaid}$</span>
+                            </li>
+                            <li>
+                                <AiOutlineWarning
+                                    className='icon'
+                                    style={{ color: 'red' }}
+                                />
+                                <span>Total Unpaid: {totalUnpaid}$</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {!isLoading &&
+                                    !error &&
+                                    data?.orders?.map((order, index) => (
+                                        <tr key={order?._id}>
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                {formatDateToDaysAgo(
+                                                    order?.createdAt
+                                                )}
+                                            </td>
+                                            <td>{order?.items?.length}</td>
+                                            <td>{order?.grandTotal}</td>
+                                            <td className='status'>
+                                                {statusIcons[order?.status] ||
+                                                    ''}
+                                                <span>{order?.status}</span>
+                                                {order?.status === 'unpaid' ? (
+                                                    <Link
+                                                        to={`${API_URL}/create-checkout-session?orderId=${order?._id}`}
+                                                    >
+                                                        Pay now
+                                                    </Link>
+                                                ) : (
+                                                    ''
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
 };
 
 export default OrdersComponent;

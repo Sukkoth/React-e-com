@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { placeOrder } from '../../features/Order/OrderService';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config/env';
 
 const PlaceOrderButton = () => {
     const navigate = useNavigate();
@@ -28,15 +29,21 @@ const PlaceOrderButton = () => {
             );
         else {
             dispatch(placeOrder(orderToBePlaced));
-            navigate('/payment');
+            // navigate('/payment');
         }
     }
-    return (
-        <button onClick={handlePlaceOrder} className='btn'>
-            {singleOrder?.isLoading && 'Placing Order . . . '}
-            {!singleOrder?.isLoading && 'Place Order'}
-        </button>
-    );
+
+    if (!singleOrder?.isLoading && singleOrder?.data?.code === '201') {
+        return (location.href =
+            API_URL +
+            `/create-checkout-session?orderId=${singleOrder?.data?.order?._id}`);
+    } else
+        return (
+            <button onClick={handlePlaceOrder} className='btn'>
+                {singleOrder?.isLoading && 'Placing Order . . . '}
+                {!singleOrder?.isLoading && 'Place Order'}
+            </button>
+        );
 };
 
 export default PlaceOrderButton;

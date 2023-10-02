@@ -18,7 +18,7 @@ const Payment = () => {
                 onChange={handlePaymentMethodChange}
                 value={paymentMethod}
             >
-                <option value='paypal'>Paypal</option>
+                {/* <option value='paypal'>Paypal</option> */}
                 <option value='stripe'>Stripe</option>
             </select>
         </div>

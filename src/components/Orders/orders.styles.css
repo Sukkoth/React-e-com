@@ -21,7 +21,7 @@
 td,
 th {
     border: 1px solid #777;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
 }
 
@@ -44,10 +44,19 @@ th {
     margin: 0;
 }
 
+.orders-page .orders .orders-summary {
+    background: #1e293b;
+    background: linear-gradient(100deg, #334155 0%, #334155 50%, #1e293b 100%);
+    color: white;
+    border-radius: 2rem;
+    padding: 1rem;
+    border: solid 1px var(--primary-color);
+}
+
 th {
     background-color: var(--primary-color);
     color: white;
-    padding: 1rem;
+    padding: 0.7rem;
 }
 
 table {
@@ -60,12 +69,20 @@ table {
 } */
 
 @media screen and (max-width: 800px) {
+    th {
+        font-weight: normal;
+        padding: 0.3rem;
+    }
     .orders-page {
         padding-inline: 1rem;
     }
     .orders-page .orders {
         flex-direction: column;
-        align-items: center;
+    }
+    .orders-page .orders .orders-summary {
+        width: 90%;
+        margin-inline: auto;
+        line-height: 3rem;
     }
     .orders-page .orders .table {
         width: 100%;
@@ -74,18 +91,8 @@ table {
 @media screen and (min-width: 800px) {
     .orders-page .orders .orders-summary {
         width: 25%;
-        background: #1e293b;
-        background: linear-gradient(
-            100deg,
-            #334155 0%,
-            #334155 50%,
-            #1e293b 100%
-        );
-        color: white;
         height: 25rem;
-        border-radius: 2rem;
-        padding: 1rem;
-        border: solid 1px var(--primary-color);
+
         /* box-shadow: 5px 5px 20px 5px var(--teritiary-color); */
     }
 
