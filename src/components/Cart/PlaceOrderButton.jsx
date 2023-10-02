@@ -29,14 +29,13 @@ const PlaceOrderButton = () => {
             );
         else {
             dispatch(placeOrder(orderToBePlaced));
-            // navigate('/payment');
         }
     }
 
     if (!singleOrder?.isLoading && singleOrder?.data?.code === '201') {
-        return (location.href =
+        location.href =
             API_URL +
-            `/create-checkout-session?orderId=${singleOrder?.data?.order?._id}`);
+            `/create-checkout-session?orderId=${singleOrder?.data?.order?._id}`;
     } else
         return (
             <button onClick={handlePlaceOrder} className='btn'>
