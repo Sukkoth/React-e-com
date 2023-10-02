@@ -1,5 +1,5 @@
 import './cartComponent.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     fetchCartData,
@@ -23,6 +23,7 @@ const CartComponent = () => {
     const cart = useSelector(cartSelector);
     const cartIsLoading = useSelector(cartIsLoadingSelector);
     const cartError = useSelector(cartErrorSelector);
+    const [checkout, setCheckout] = useState(false);
 
     useEffect(() => {
         dispatch(fetchCartData());
@@ -53,13 +54,24 @@ const CartComponent = () => {
                     </div>
                     <div className='cart-total'>
                         <CartTotal />
-                        <Shipping />
-                        <CartGrandTotal />
-                        <Payment />
-
-                        <div className='total-item'>
-                            <PlaceOrderButton />
-                        </div>
+                        {!checkout && (
+                            <button
+                                className='btn btn-checkout'
+                                onClick={() => setCheckout(true)}
+                            >
+                                Checkout
+                            </button>
+                        )}
+                        {checkout && (
+                            <>
+                                <Shipping />
+                                <CartGrandTotal />
+                                <Payment />{' '}
+                                <div className='total-item'>
+                                    <PlaceOrderButton />
+                                </div>
+                            </>
+                        )}
                     </div>
                 </>
             )}

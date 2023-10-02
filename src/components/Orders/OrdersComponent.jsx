@@ -24,22 +24,22 @@ const OrdersComponent = () => {
         dispatch(getAllOrders());
     }, [dispatch]);
 
-    const totalItems = data?.orders?.reduce(
-        (acc, order) => acc + order.items.length,
-        0
-    );
+    const totalItems =
+        data?.orders?.reduce((acc, order) => acc + order.items.length, 0) || 0;
 
-    const totalPaid = Math.round(
-        data?.orders
-            ?.filter((order) => order.status !== 'unpaid')
-            ?.reduce((acc, order) => acc + order.grandTotal, 0)
-    );
+    const totalPaid =
+        Math.round(
+            data?.orders
+                ?.filter((order) => order.status !== 'unpaid')
+                ?.reduce((acc, order) => acc + order.grandTotal, 0)
+        ) || 0;
 
-    const totalUnpaid = Math.round(
-        data?.orders
-            ?.filter((order) => order.status === 'unpaid')
-            ?.reduce((acc, order) => acc + order.grandTotal, 0)
-    );
+    const totalUnpaid =
+        Math.round(
+            data?.orders
+                ?.filter((order) => order.status === 'unpaid')
+                ?.reduce((acc, order) => acc + order.grandTotal, 0)
+        ) || 0;
 
     const statusIcons = {
         unpaid: <AiOutlineWarning color='red' />,

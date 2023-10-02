@@ -90,6 +90,12 @@
     border-radius: 0.5rem 0 0 0.5rem;
     cursor: pointer;
 }
+
+.btn-checkout {
+    margin-bottom: 2rem;
+    right: 2rem;
+    margin-inline: auto;
+}
 .cart-button-disabled {
     background-color: var(--light-color);
     cursor: not-allowed;
