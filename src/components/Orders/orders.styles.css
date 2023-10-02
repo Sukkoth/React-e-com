@@ -87,6 +87,10 @@ table {
     .orders-page .orders .table {
         width: 100%;
     }
+    .status a {
+        padding: 0;
+        padding: 0.3rem 0.3rem;
+    }
 }
 @media screen and (min-width: 800px) {
     .orders-page .orders .orders-summary {
