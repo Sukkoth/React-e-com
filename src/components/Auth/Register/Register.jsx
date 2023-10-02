@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react';
+import { useEffect } from 'react';
 import '../auth-page.styles.css';
 import logo from '../../../assets/icon-21.png';
 
@@ -19,9 +19,11 @@ const Register = () => {
         isLoading,
         auth,
     } = useSelector((state) => state.auth);
-    const token = useMemo(() => auth?.token, [auth.token]);
+
+    const token = auth?.token;
+
     useEffect(() => {
-        token && navigate('/');
+        if (token) return (location.href = '/');
     }, [token, navigate]);
 
     useEffect(() => {
@@ -35,8 +37,6 @@ const Register = () => {
     } = useForm({ resolver: yupResolver(registrationSchema) });
 
     const handleFormSubmit = (data) => {
-        dispatch(registerUser(data));
-        console.log('REGISTRATION', data);
         delete data.confirmPassword;
         dispatch(registerUser(data));
     };

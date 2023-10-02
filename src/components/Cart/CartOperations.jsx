@@ -27,7 +27,6 @@ const CartOperations = ({
     );
 
     const handleCartAddRemove = () => {
-        console.log('index adding to cart', variationIndex);
         if (!auth) navigate('/login');
         if (!cartStatusIsLoading)
             !foundInCart
