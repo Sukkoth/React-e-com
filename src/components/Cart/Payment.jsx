@@ -11,7 +11,7 @@ const Payment = () => {
 
     return (
         <div className='total-item' style={{ marginTop: '3rem' }}>
-            <h3>Choose Payment Method</h3>
+            <h3>Payment Method</h3>
             <select
                 name='paymentMethod'
                 id='paymentMethod'
