@@ -34,7 +34,10 @@ const Nav = () => {
     return (
         <nav className='nav'>
             <div className='logo-container'>
-                <img src={icon} alt='icon' />
+                <Link to={'/'}>
+                    {' '}
+                    <img src={icon} alt='icon' />
+                </Link>
             </div>
             <button
                 className='nav-toggle'
@@ -59,15 +62,9 @@ const Nav = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/' onClick={() => setShowNavMenu(false)}>
-                            About
-                        </Link>
+                        <Link to='https://gadisa.cyclic.cloud'>About</Link>
                     </li>
-                    <li>
-                        <Link to='/' onClick={() => setShowNavMenu(false)}>
-                            Contact
-                        </Link>
-                    </li>
+
                     {!auth?.token ? (
                         <>
                             {' '}
