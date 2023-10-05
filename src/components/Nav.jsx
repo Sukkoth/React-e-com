@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import icon from '../assets/icon-2.png';
+import icon from '../assets/icon-21.png';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { FaCartPlus, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -43,7 +43,11 @@ const Nav = () => {
                 className='nav-toggle'
                 onClick={() => setShowNavMenu((curr) => !curr)}
             >
-                {showNavMenu ? <FaTimes /> : <AiOutlineMenu />}
+                {showNavMenu ? (
+                    <FaTimes color='black' />
+                ) : (
+                    <AiOutlineMenu color='black' />
+                )}
             </button>
 
             <div className={`nav-menu ${showNavMenu ? 'show-nav-menu' : ''}`}>

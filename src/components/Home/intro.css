@@ -59,6 +59,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    cursor: pointer;
 }
 
 .popular-categories .title {

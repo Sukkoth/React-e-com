@@ -1,5 +1,6 @@
 .cart-page {
     margin-top: 8rem;
+    min-height: 79vh;
 }
 
 .cart-page h3 {
@@ -211,6 +212,10 @@ a {
 
     .empty-cart .card {
         padding: 3rem 3rem;
+    }
+
+    .empty-cart .img-container {
+        width: 10rem;
     }
 
     .empty-cart a {

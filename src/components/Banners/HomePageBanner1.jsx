@@ -8,9 +8,9 @@ const HomePageBanner1 = () => {
             <div className='content'>
                 <p>LIMITED OFFER</p>
                 <h3>35% off only this friday and get special gift</h3>
-                <button className='btn'>
+                {/* <button className='btn'>
                     Grab it now <FaArrowRight className='icon' />
-                </button>
+                </button> */}
             </div>
         </div>
     );
