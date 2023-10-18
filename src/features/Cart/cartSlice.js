@@ -5,7 +5,7 @@ const initialState = {
     tempCart: null,
     isLoading: false,
     error: false,
-    data: [],
+    data: {},
     cart: {
         isLoading: false,
         error: false,
@@ -102,7 +102,6 @@ const cartSlice = createSlice({
         builder.addCase(fetchCartData.pending, (state) => {
             state.isLoading = true;
             state.error = {};
-            state.data = {};
         });
         builder.addCase(fetchCartData.fulfilled, (state, action) => {
             state.isLoading = false;

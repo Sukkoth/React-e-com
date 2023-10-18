@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { getWishList } from '../../features/WishList/wishListSlice';
 import FullLoader from '../Loaders/FullLoader';
 import Card from '../../components/MessageCard/Card';
+import emptyWishlistIcon from '../../assets/empty-wishlist.png';
 
 const WishList = () => {
     const dispatch = useDispatch();
@@ -20,16 +21,23 @@ const WishList = () => {
         (item) => item?.product
     );
 
-    console.log(products);
     if (isLoading) {
         return <FullLoader isLoading={isLoading} />;
     }
 
     return data?.wishList?.items?.length ? (
-        <Card />
-    ) : (
         <div className='wishlist-page'>
             <ProductsList products={products} />
+        </div>
+    ) : (
+        <div className='wishlist-page'>
+            <Card
+                header='Empty List'
+                btnText='Products'
+                link='/products'
+                text='Your wishlist is empty, try adding some products'
+                image={emptyWishlistIcon}
+            />
         </div>
     );
 };

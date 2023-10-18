@@ -6,7 +6,6 @@ import {
     cartSelector,
     cartIsLoadingSelector,
     cartErrorSelector,
-    tempCartSelector,
 } from '../../features/Cart/cartSlice';
 
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';

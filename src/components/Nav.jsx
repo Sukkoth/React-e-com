@@ -8,9 +8,15 @@ import { logoutUser } from '../features/Auth/authSlice';
 
 const Nav = () => {
     const dispatch = useDispatch();
+
     const cartCount = useSelector(
         (state) => state.cart?.data?.data?.items?.length
     );
+    const wishlistCount = useSelector(
+        (state) => state.wishlist?.data?.wishList?.items?.length
+    );
+
+    console.log(cartCount, wishlistCount);
 
     const auth = useSelector((state) => state.auth.auth);
 
@@ -123,9 +129,9 @@ const Nav = () => {
                                     onClick={() => setShowNavMenu(false)}
                                 >
                                     <AiFillHeart />
-                                    {cartCount > 0 && (
+                                    {wishlistCount > 0 && (
                                         <span className='cart-counter'>
-                                            {cartCount}
+                                            {wishlistCount}
                                         </span>
                                     )}
                                 </Link>

@@ -6,11 +6,13 @@ import './productList.css';
 
 const ProductsList = ({ title, products }) => {
     const { pathname } = useLocation();
-    console.log('PRODUCTS', products);
     return (
         <div className='products-list'>
             <h3>
-                {title} ({products?.data?.productsCount || products?.length})
+                {title} (
+                {products?.data?.productsCount ||
+                    products?.data?.products?.length}
+                )
             </h3>
             {products?.data?.products?.map((product) => (
                 <Product product={product} key={product._id} />
