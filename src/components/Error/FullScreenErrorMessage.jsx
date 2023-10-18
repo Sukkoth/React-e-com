@@ -1,13 +1,20 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import './fullScreenErrorMessageStyle.css';
+import Card from '../MessageCard/Card';
+import serverErrorIcon from '../../assets/500.png';
 
-const FullScreenErrorMessage = ({ message }) => {
-    return (
-        <div className='error-container'>
-            <h2 className='message'>{message}</h2>
-        </div>
-    );
+const FullScreenErrorMessage = ({ message, code }) => {
+    if (code === 500) {
+        return (
+            <Card
+                header={500}
+                text='Internal Server Error Encountered'
+                image={serverErrorIcon}
+                btnText='Homepage'
+                link='/'
+            />
+        );
+    }
 };
 
 FullScreenErrorMessage.defaultProps = {

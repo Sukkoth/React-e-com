@@ -1,0 +1,55 @@
+.info-card {
+    min-height: 75vh;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-card .card {
+    background-color: var(--light-color);
+    padding: 6rem 3rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 2rem;
+    text-align: center;
+    min-width: 19rem;
+}
+
+.info-card h1 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.info-card a {
+    margin-top: 4rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    text-decoration: none;
+}
+
+.info-card .img-container {
+    width: 15rem;
+}
+.info-card .img-container img {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .info-card .card {
+        padding: 3rem 3rem;
+    }
+
+    .info-card .img-container {
+        width: 10rem;
+    }
+
+    .info-card a {
+        margin-top: 3rem;
+    }
+}

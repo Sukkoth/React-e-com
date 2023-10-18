@@ -28,13 +28,18 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
-    async (_, { getState }) => {
-        const response = await axios.get(
-            `/products/?${parseProductQueryParams(
-                getState().products.products.queryOptions
-            )}`
-        );
-        return response.data;
+    async (_, { getState, rejectWithValue }) => {
+        try {
+            const response = await axios.get(
+                `/products/?${parseProductQueryParams(
+                    getState().products.products.queryOptions
+                )}`
+            );
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return rejectWithValue(error.response.data);
+        }
     }
 );
 
@@ -48,9 +53,14 @@ export const fetchFeaturedProducts = createAsyncThunk(
 
 export const fetchproductById = createAsyncThunk(
     'products/fetchProductById',
-    async (productId) => {
-        const response = await axios.get(`/products/${productId}`);
-        return response.data;
+    async (productId, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`/products/${productId}`);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return rejectWithValue(error.response.data);
+        }
     }
 );
 
@@ -80,7 +90,7 @@ const productsSlice = createSlice({
         });
         builder.addCase(fetchProducts.rejected, (state, action) => {
             state.products.isLoading = false;
-            state.products.error = action.error;
+            state.products.error = action.payload;
         });
 
         //*PRODUCT BY ID
@@ -95,7 +105,7 @@ const productsSlice = createSlice({
         });
         builder.addCase(fetchproductById.rejected, (state, action) => {
             state.product.isLoading = false;
-            state.product.error = action.error;
+            state.product.error = action.payload;
         });
 
         //* FEATURED PRODUCTS

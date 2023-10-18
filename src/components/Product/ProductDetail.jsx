@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchproductById } from '../../features/Products/productSlice';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
@@ -59,6 +59,13 @@ const ProductDetail = () => {
                 : tempVariantIndex;
         setActiveVariant(tempVariantIndex);
     }, [product, queryParams]);
+
+    useEffect(() => {
+        console.log('CODE', error.code);
+        if (error.code === 404) {
+            window.location = '/404';
+        }
+    }, [error.code]);
     //* ///////////////////// FUNCTIONS   ///////////////////////
 
     //! //////////////////RETURN////////////////////////
@@ -67,7 +74,7 @@ const ProductDetail = () => {
         <div className='details-main'>
             <FullLoader isLoading={isLoading} />
             {!isLoading && error && (
-                <FullScreenErrorMessage message={error?.message} />
+                <FullScreenErrorMessage message={error?.message} code={404} />
             )}
             {!isLoading && !error && product && (
                 <>

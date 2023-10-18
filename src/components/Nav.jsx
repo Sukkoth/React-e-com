@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import icon from '../assets/icon-21.png';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu, AiFillHeart } from 'react-icons/ai';
 import { FaCartPlus, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -100,7 +100,6 @@ const Nav = () => {
                             <li>
                                 <Link
                                     to='/orders'
-                                    // className='cart-items'
                                     onClick={() => setShowNavMenu(false)}
                                 >
                                     Orders
@@ -109,7 +108,6 @@ const Nav = () => {
                             <li>
                                 <Link
                                     to='/cart'
-                                    // className='cart-items'
                                     onClick={() => setShowNavMenu(false)}
                                 >
                                     <FaCartPlus />
@@ -119,7 +117,20 @@ const Nav = () => {
                                         </span>
                                     )}
                                 </Link>
+                                <Link
+                                    to='/wishlist'
+                                    style={{ marginLeft: '2rem' }}
+                                    onClick={() => setShowNavMenu(false)}
+                                >
+                                    <AiFillHeart />
+                                    {cartCount > 0 && (
+                                        <span className='cart-counter'>
+                                            {cartCount}
+                                        </span>
+                                    )}
+                                </Link>
                             </li>
+                            <li></li>
                         </>
                     )}
                 </ul>

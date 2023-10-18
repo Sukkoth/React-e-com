@@ -25,7 +25,8 @@ const WishlistOperations = ({
 
     const foundInWishList = wishList?.items.find(
         (item) =>
-            item.product === productId && item.variationIndex === variationIndex
+            item.product._id === productId &&
+            item.variationIndex === variationIndex
     );
 
     const handleAddToWishList = () => {

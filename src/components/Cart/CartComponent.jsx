@@ -17,8 +17,8 @@ import CartGrandTotal from './CartGrandTotal';
 import Shipping from './Shipping';
 import Payment from './Payment';
 import PlaceOrderButton from './PlaceOrderButton';
+import Card from '../MessageCard/Card';
 import cartEmptyImage from '../../assets/empty-cart.png';
-import { Link } from 'react-router-dom';
 
 const CartComponent = () => {
     const dispatch = useDispatch();
@@ -40,7 +40,13 @@ const CartComponent = () => {
     return (
         <>
             {cartItems?.length == 0 ? (
-                <EmptyCart />
+                <Card
+                    text='There is nothing in your cart. Add items to continue'
+                    header='Empty Cart'
+                    btnText='Browse Products'
+                    image={cartEmptyImage}
+                    link='/products'
+                />
             ) : (
                 <>
                     <h3>Your Cart</h3>
@@ -80,20 +86,5 @@ const CartComponent = () => {
         </>
     );
 };
-
-function EmptyCart() {
-    return (
-        <div className='empty-cart'>
-            <div className='card'>
-                <div className='img-container'>
-                    <img src={cartEmptyImage} alt='cart-empty-img' />
-                </div>
-                <h1>Empty cart</h1>
-                <p>There is nothing in your cart. Add items to continue</p>
-                <Link to={'/products'}> Browse Products</Link>
-            </div>
-        </div>
-    );
-}
 
 export default CartComponent;

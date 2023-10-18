@@ -14,7 +14,7 @@ const initialState = {
 export const getWishList = createAsyncThunk(
     'wishlist/getAllWishList',
     async () => {
-        const response = await axios.get('/wishList');
+        const response = await axios.get('/wishList?populate=products');
         return response.data;
     }
 );
