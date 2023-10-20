@@ -1,11 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../utils/axios';
-import parseProductQueryParams from '../../utils/parseProductQueryParams';
+import { createSlice } from '@reduxjs/toolkit';
+import { productsBuilder } from './productstBuilder';
 
 const initialState = {
     products: {
         isLoading: false,
-        error: '',
+        error: null,
         data: [],
         queryOptions: {
             page: 1,
@@ -15,54 +14,16 @@ const initialState = {
     },
     product: {
         isLoading: false,
-        error: '',
+        error: null,
         data: [],
     },
 
     featuredProducts: {
         isLoading: false,
-        error: '',
+        error: null,
         data: [],
     },
 };
-
-export const fetchProducts = createAsyncThunk(
-    'products/fetchProducts',
-    async (_, { getState, rejectWithValue }) => {
-        try {
-            const response = await axios.get(
-                `/products/?${parseProductQueryParams(
-                    getState().products.products.queryOptions
-                )}`
-            );
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
-
-export const fetchFeaturedProducts = createAsyncThunk(
-    'products/fetchFeaturedProducts',
-    async () => {
-        const response = await axios.get(`/products/featured`);
-        return response.data;
-    }
-);
-
-export const fetchproductById = createAsyncThunk(
-    'products/fetchProductById',
-    async (productId, { rejectWithValue }) => {
-        try {
-            const response = await axios.get(`/products/${productId}`);
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
 
 const productsSlice = createSlice({
     name: 'products',
@@ -78,51 +39,7 @@ const productsSlice = createSlice({
             state.products.queryOptions.categories = action.payload;
         },
     },
-    extraReducers: (builder) => {
-        //*PRODUCTS
-        builder.addCase(fetchProducts.pending, (state) => {
-            state.products.isLoading = true;
-            state.products.error = '';
-        });
-        builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state.products.isLoading = false;
-            state.products.data = action.payload;
-        });
-        builder.addCase(fetchProducts.rejected, (state, action) => {
-            state.products.isLoading = false;
-            state.products.error = action.payload;
-        });
-
-        //*PRODUCT BY ID
-
-        builder.addCase(fetchproductById.pending, (state) => {
-            state.product.isLoading = true;
-            state.product.error = '';
-        });
-        builder.addCase(fetchproductById.fulfilled, (state, action) => {
-            state.product.isLoading = false;
-            state.product.data = action.payload;
-        });
-        builder.addCase(fetchproductById.rejected, (state, action) => {
-            state.product.isLoading = false;
-            state.product.error = action.payload;
-        });
-
-        //* FEATURED PRODUCTS
-
-        builder.addCase(fetchFeaturedProducts.pending, (state) => {
-            state.featuredProducts.isLoading = true;
-            state.featuredProducts.error = '';
-        });
-        builder.addCase(fetchFeaturedProducts.fulfilled, (state, action) => {
-            state.featuredProducts.isLoading = false;
-            state.featuredProducts.data = action.payload;
-        });
-        builder.addCase(fetchFeaturedProducts.rejected, (state, action) => {
-            state.featuredProducts.isLoading = false;
-            state.featuredProducts.error = action.error;
-        });
-    },
+    extraReducers: productsBuilder,
 });
 
 export const featuredProductsSelector = (state) =>

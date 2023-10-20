@@ -7,8 +7,8 @@ import store from './store/store.js';
 import { Provider } from 'react-redux';
 import { fetchCategories } from './features/Categories/categoriesSlice.js';
 import { fetchUserFromLocal } from './features/Auth/authSlice.js';
-import { fetchCartData } from './features/Cart/cartSlice.js';
-import { getWishList } from './features/WishList/wishListSlice.js';
+import { fetchCartData } from './features/Cart/cartService.js';
+import { getWishList } from './features/WishList/wishlistService.js';
 
 store.dispatch(fetchCategories());
 store.dispatch(fetchUserFromLocal());

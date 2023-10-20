@@ -3,15 +3,21 @@ import axios from '../../utils/axios';
 
 const initialState = {
     isLoading: false,
-    error: {},
+    error: null,
     data: [],
 };
 
 export const fetchCategories = createAsyncThunk(
     'categories/fetchCategories',
-    async () => {
-        const response = await axios.get(`/categories`);
-        return response.data;
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`/categories`);
+            return response.data;
+        } catch (error) {
+            return error?.response
+                ? rejectWithValue(error?.response?.data)
+                : rejectWithValue(error);
+        }
     }
 );
 
@@ -21,7 +27,7 @@ const categoriesSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchCategories.pending, (state) => {
             state.isLoading = true;
-            state.error = {};
+            state.error = null;
         });
         builder.addCase(fetchCategories.fulfilled, (state, action) => {
             state.isLoading = false;
@@ -29,7 +35,7 @@ const categoriesSlice = createSlice({
         });
         builder.addCase(fetchCategories.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = action.error;
+            state.error = action.payload;
         });
     },
 });

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { subTotalCalculation } from '../../features/Cart/cartSlice';
-import { removeCartItem } from '../../features/Cart/cartSlice';
+import { removeCartItem } from '../../features/Cart/cartService';
 
 const CartItemComponent = ({ cartItem }) => {
     const navigate = useNavigate();

@@ -16,8 +16,6 @@ const Nav = () => {
         (state) => state.wishlist?.data?.wishList?.items?.length
     );
 
-    console.log(cartCount, wishlistCount);
-
     const auth = useSelector((state) => state.auth.auth);
 
     const [showNavMenu, setShowNavMenu] = useState(false);

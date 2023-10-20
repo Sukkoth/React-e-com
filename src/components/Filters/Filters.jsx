@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { categoriesSelector } from '../../features/Categories/categoriesSlice';
 import {
     changePage,
-    fetchProducts,
     updateQueryCategories,
 } from '../../features/Products/productSlice';
+import { fetchProducts } from '../../features/Products/productsService';
+
 const Filters = () => {
     const queryOptions = useSelector(
         (state) => state?.products?.products?.queryOptions

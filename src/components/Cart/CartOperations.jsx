@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { BsCartPlusFill, BsFillCartXFill } from 'react-icons/bs';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { addToCart, removeCartItem } from '../../features/Cart/cartSlice';
+import { addToCart, removeCartItem } from '../../features/Cart/cartService';
 import { SyncLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';

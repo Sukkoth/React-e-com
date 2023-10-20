@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     addToWishList,
     removeFromWishList,
+} from '../../features/WishList/wishlistService';
+
+import {
     wishItemSelector,
     wishItemStatusSelector,
 } from '../../features/WishList/wishListSlice';

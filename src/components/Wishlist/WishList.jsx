@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './wishList.styles.css';
 import ProductsList from '../Product/ProductsList';
 import { useEffect } from 'react';
-import { getWishList } from '../../features/WishList/wishListSlice';
+import { getWishList } from '../../features/WishList/wishlistService';
 import FullLoader from '../Loaders/FullLoader';
 import Card from '../../components/MessageCard/Card';
 import emptyWishlistIcon from '../../assets/empty-wishlist.png';
+import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 
 const WishList = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,14 @@ const WishList = () => {
 
     if (isLoading) {
         return <FullLoader isLoading={isLoading} />;
+    }
+
+    if (!isLoading && error) {
+        return (
+            <div className='wishlist-page'>
+                <FullScreenErrorMessage error={error} />;
+            </div>
+        );
     }
 
     return data?.wishList?.items?.length ? (

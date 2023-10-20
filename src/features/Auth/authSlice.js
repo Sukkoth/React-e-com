@@ -1,59 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../utils/axios';
+import { authBuilder } from './authBuilder';
 
 const initialState = {
     isLoading: false,
     error: {},
     auth: {},
 };
-
-export const login = createAsyncThunk(
-    'auth/login',
-    async (userCredentials, { rejectWithValue }) => {
-        try {
-            const response = await axios.post('/users/auth/login', {
-                ...userCredentials,
-            });
-            if (response?.data?.token) {
-                localStorage.setItem(
-                    'auth',
-                    JSON.stringify({
-                        token: response.data.token,
-                        user: response.data.user,
-                    })
-                );
-            }
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
-
-export const registerUser = createAsyncThunk(
-    'auth/register',
-    async (userData, { rejectWithValue }) => {
-        delete userData.confirmPassword;
-        try {
-            const response = await axios.post('/users/auth/register', {
-                ...userData,
-            });
-            if (response?.data?.token) {
-                localStorage.setItem(
-                    'auth',
-                    JSON.stringify({
-                        token: response.data.token,
-                        user: response.data.user,
-                    })
-                );
-            }
-            return { user: response.data.user, token: response.data.token };
-        } catch (error) {
-            return rejectWithValue(error.response.data);
-        }
-    }
-);
 
 const authSlice = createSlice({
     name: 'login',
@@ -64,42 +16,14 @@ const authSlice = createSlice({
             if (localData) state.auth = JSON.parse(localData);
         },
         resetErrors: (state) => {
-            state.error = {};
+            state.error = null;
         },
         logoutUser: (state) => {
             localStorage.removeItem('auth');
             state.auth = {};
         },
     },
-    extraReducers: (builder) => {
-        //LOGIN
-        builder.addCase(login.pending, (state) => {
-            state.isLoading = true;
-            state.error = {};
-        });
-        builder.addCase(login.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.auth = action.payload;
-        });
-        builder.addCase(login.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload;
-        });
-
-        //REGISTER
-        builder.addCase(registerUser.pending, (state) => {
-            state.isLoading = true;
-            state.error = {};
-        });
-        builder.addCase(registerUser.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.auth = action.payload;
-        });
-        builder.addCase(registerUser.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload;
-        });
-    },
+    extraReducers: authBuilder,
 });
 
 export default authSlice;

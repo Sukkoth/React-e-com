@@ -26,7 +26,7 @@ const ProductsList = ({ title, products }) => {
 
 ProductsList.propTypes = {
     title: PropTypes.string,
-    products: PropTypes.array,
+    products: PropTypes.object,
 };
 ProductsList.defaultProps = {
     title: 'Products',

@@ -2,10 +2,8 @@ import PropTypes from 'prop-types';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import './pagination.css';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    changePage,
-    fetchProducts,
-} from '../../features/Products/productSlice';
+import { changePage } from '../../features/Products/productSlice';
+import { fetchProducts } from '../../features/Products/productsService';
 
 const Pagination = ({ totalResults = 100 }) => {
     const dispatch = useDispatch();

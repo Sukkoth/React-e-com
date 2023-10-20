@@ -1,10 +1,8 @@
 import './featuredProducts.css';
 import FeaturedProduct from './FeaturedProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    featuredProductsSelector,
-    fetchFeaturedProducts,
-} from '../../features/Products/productSlice';
+import { fetchFeaturedProducts } from '../../features/Products/productsService';
+import { featuredProductsSelector } from '../../features/Products/productSlice';
 import { useState } from 'react';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 

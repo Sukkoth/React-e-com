@@ -2,14 +2,13 @@ import { useEffect, useMemo } from 'react';
 import '../auth-page.styles.css';
 import logo from '../../../assets/icon-21.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, resetErrors } from '../../../features/Auth/authSlice';
+import { resetErrors } from '../../../features/Auth/authSlice';
+import { login } from '../../../features/Auth/authService';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema from '../../../utils/yupSchemas/loginSchema';
 import { RiseLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
-import { fetchCartData } from '../../../features/Cart/cartSlice';
-import { getWishList } from '../../../features/WishList/wishListSlice';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -21,8 +20,6 @@ const Login = () => {
     const token = useMemo(() => auth?.token, [auth.token]);
     useEffect(() => {
         if (token) {
-            dispatch(fetchCartData());
-            dispatch(getWishList());
             location.href = '/';
         }
     }, [token, dispatch]);

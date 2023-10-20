@@ -2,11 +2,11 @@ import './cartComponent.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    fetchCartData,
     cartSelector,
     cartIsLoadingSelector,
     cartErrorSelector,
 } from '../../features/Cart/cartSlice';
+import { fetchCartData } from '../../features/Cart/cartService';
 
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
 import CartItemsList from './CartItemsList';
@@ -34,7 +34,8 @@ const CartComponent = () => {
 
     if (cartIsLoading) return <FullLoader isLoading={cartIsLoading} />;
     if (!cartIsLoading && cartError?.message) {
-        return <FullScreenErrorMessage message={cartError?.message} />;
+        console.log(cartError);
+        return <FullScreenErrorMessage error={cartError} />;
     }
     return (
         <>

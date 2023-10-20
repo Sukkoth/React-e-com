@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import registrationSchema from '../../../utils/yupSchemas/registrationSchema';
-import { registerUser, resetErrors } from '../../../features/Auth/authSlice';
+import { resetErrors } from '../../../features/Auth/authSlice';
+import { registerUser } from '../../../features/Auth/authService';
 import { RiseLoader } from 'react-spinners';
 
 const Register = () => {

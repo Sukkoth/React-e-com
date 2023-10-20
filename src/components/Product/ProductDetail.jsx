@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchproductById } from '../../features/Products/productSlice';
+import { fetchproductById } from '../../features/Products/productsService';
 import { PRODCTS_IMAGE_URL } from '../../config/env';
 import FullLoader from '../Loaders/FullLoader';
 import FullScreenErrorMessage from '../Error/FullScreenErrorMessage';
@@ -60,22 +60,26 @@ const ProductDetail = () => {
         setActiveVariant(tempVariantIndex);
     }, [product, queryParams]);
 
-    useEffect(() => {
-        console.log('CODE', error.code);
-        if (error.code === 404) {
-            window.location = '/404';
-        }
-    }, [error.code]);
+    // useEffect(() => {
+    //     console.log('CODE', error.code);
+    //     if (error.code === 404) {
+    //         window.location = '/404';
+    //     }
+    // }, [error.code]);
     //* ///////////////////// FUNCTIONS   ///////////////////////
 
     //! //////////////////RETURN////////////////////////
 
-    return (
+    return !isLoading && error ? (
+        <div style={{ marginTop: '10rem' }}>
+            <FullScreenErrorMessage
+                error={{ message: 'SOmething', code: 'UNKNOWN' }}
+            />
+        </div>
+    ) : (
         <div className='details-main'>
             <FullLoader isLoading={isLoading} />
-            {!isLoading && error && (
-                <FullScreenErrorMessage message={error?.message} code={404} />
-            )}
+
             {!isLoading && !error && product && (
                 <>
                     <section className='showcase'>

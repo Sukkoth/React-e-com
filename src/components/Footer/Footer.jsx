@@ -4,7 +4,7 @@ import { FaBriefcase, FaTelegram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 const Footer = () => {
     return (
         <footer>
-            <h2>E-shop</h2>
+            <h2>Shop</h2>
             <div className='socials'>
                 <a href='https://gadisa.cyclic.cloud/'>
                     <FaBriefcase />
