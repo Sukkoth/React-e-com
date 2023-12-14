@@ -69,9 +69,7 @@ const Nav = () => {
                             Products
                         </Link>
                     </li>
-                    <li>
-                        <Link to='https://gadisa.cyclic.cloud'>About</Link>
-                    </li>
+                    
 
                     {!auth?.token ? (
                         <>
